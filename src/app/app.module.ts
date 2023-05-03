@@ -1,23 +1,26 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TaskListComponent } from './components/task-list/task-list.component';
+import { HomeComponent } from './containers/home/home.component';
+import { TodoListComponent } from './containers/todo-list/todo-list.component';
+import { TaskComponent } from './components/task/task.component';
+import { FormsModule } from '@angular/forms';
+import { FlowerComponent } from './components/flower/flower.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import { TaskAddComponent } from './containers/task-add/task-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TaskListComponent,
-    TaskAddComponent
+     AppComponent,
+     HomeComponent,
+     TodoListComponent,
+     TaskComponent,
+     FlowerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

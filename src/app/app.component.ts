@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FlowerComponent } from './components/flower/flower.component';
 
 @Component({
   selector: 'app-root',
