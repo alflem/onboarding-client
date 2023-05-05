@@ -7,11 +7,12 @@ import { TodoListComponent } from './containers/todo-list/todo-list.component';
 import { TaskComponent } from './components/task/task.component';
 import { FormsModule } from '@angular/forms';
 import { FlowerComponent } from './components/flower/flower.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
   declarations: [
-     AppComponent,
+    AppComponent,
      HomeComponent,
      TodoListComponent,
      TaskComponent,
@@ -20,7 +21,8 @@ import { FlowerComponent } from './components/flower/flower.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

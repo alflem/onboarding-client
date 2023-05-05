@@ -1,6 +1,9 @@
-<ul class="list-group">
-  <li *ngFor="let task of tasks" class="list-group-item">
-    <input type="checkbox" [(ngModel)]="task.isFinished" (change)="onTaskStatusChange(task)">
-    {{ task.title }}
-  </li>
-</ul>
+<mat-selection-list #shoes>
+  <mat-list-option *ngFor="let shoe of typesOfShoes">
+    {{shoe}}
+  </mat-list-option>
+</mat-selection-list>
+
+<p>
+  Options selected: {{shoes.selectedOptions.selected.length}}
+</p>

@@ -1,4 +1,8 @@
 <div class="flower-container">
   <button class="leaf-button" routerLink="/todo-list">To-Do List</button>
   <!-- Add more leaf buttons as needed -->
+  <!-- Add the routerLink directive to the button -->
+  <button [routerLink]="['/todo-list']" class="to-do-list-button">
+    To-Do List
+  </button>
 </div>
