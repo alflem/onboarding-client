@@ -1,0 +1,22 @@
+<div class="task-list">
+  <div class="header">
+    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"> </mat-checkbox>
+    <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar>
+  </div>
+  
+  <div *ngFor="let task of tasks" class="task-row">
+    <div class="task">
+      <h3>{{ task.title }}</h3>
+      <mat-progress-bar mode="determinate" [value]="getProgress(task)"></mat-progress-bar>
+      <div class="steps">
+        <ng-container *ngFor="let step of task.steps">
+          <div class="step">
+            <mat-checkbox [(ngModel)]="step.completed" (change)="onCheckboxChange()">
+              <a [href]="step.url" target="_blank">{{ step.name }}</a>
+            </mat-checkbox>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

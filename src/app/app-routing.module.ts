@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FlowerComponent } from './components/flower/flower.component';
-import { TodoListComponent } from './containers/todo-list/todo-list.component';
+import { TaskListComponent } from './task-list/task-list.component';
 
 const routes: Routes = [
-  { path: '', component: FlowerComponent },
-  { path: 'todo-list', component: TodoListComponent }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'task-list', component: TaskListComponent },
+  // Add other routes here
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
