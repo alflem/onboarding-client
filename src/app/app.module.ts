@@ -16,7 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     MatProgressBarModule,
     MatCheckboxModule,
     MatIconModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

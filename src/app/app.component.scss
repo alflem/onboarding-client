@@ -26,7 +26,7 @@ $light-theme: mat.define-light-theme((
 @include mat.all-component-themes($light-theme);
 
 .darkTheme {
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-component($dark-theme);
 }
 .container {
   display: flex;

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../services/task.service';
+import { Task as TaskTemp } from '../models/task.interface';
+import { Observable } from 'rxjs';
 
 interface Task {
   title: string;
@@ -20,7 +23,12 @@ interface Step {
 export class TaskListComponent implements OnInit {
 
   selectAll: boolean = false;
-
+  constructor(private taskService:TaskService) {}
+  ngOnInit(): void {
+    this.taskService.getAllTasks().subscribe((data:TaskTemp[]) => {
+      let tasks = data;
+    });
+  }
 
   getTotalProgress(): number {
     const totalSteps = this.tasks.reduce((acc, task) => acc + task.steps.length, 0);
@@ -64,9 +72,9 @@ export class TaskListComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  
 
-  ngOnInit(): void {}
+  
 
   getProgress(task: Task): number {
     const completedSteps = task.steps.filter((step) => step.completed).length;
