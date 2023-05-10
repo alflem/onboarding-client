@@ -8,35 +8,37 @@ interface TaskView {
   id: number;
 }
 
-
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
   TaskType = TaskType;
-  
+
   selectAll: boolean = false;
   tasks: Task[] = [];
-  activeTasks: Task[] = [];
-  selectedTaskType: TaskType = TaskType.BEFORE_START;
-  taskTypes = Object.values(TaskType).filter(value => typeof value === 'string');
-  constructor(private taskService: TaskService) { }
+  allTasks: Task[] = [];
+  selectedTaskType: string = '';
+  taskTypes = Object.values(TaskType).filter(
+    (value) => typeof value === 'string'
+  );
+  constructor(private taskService: TaskService) {}
 
   fetchTasksByTaskType(taskType: string): void {
-    this.activeTasks = this.tasks.filter(t => t.taskType === taskType);
-      
+    this.allTasks = this.tasks.filter((t) => t.taskType === taskType);
   }
 
-
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe((data: Task[]) => {
-      this.tasks = data
-      this.fetchTasksByTaskType(TaskType[0]);
-
-     
+    this.taskService.getAllTasks().subscribe((tasks: Task[]) => {
+      this.tasks = tasks;
+      this.allTasks = tasks;
     });
+  }
+
+  filterTasksByTaskType(taskType: string) {
+    this.tasks = this.allTasks.filter((task: Task) => task.taskType === taskType);
+    console.log(this.tasks);
   }
 
   showStepDescription(description: string): void {
@@ -44,8 +46,14 @@ export class TaskListComponent implements OnInit {
   }
 
   getTotalProgress(): number {
-    const totalSteps = this.tasks.reduce((acc, task) => acc + this.tasks.length, 0);
-    const completedSteps = this.tasks.reduce((acc, task) => acc + this.tasks.filter(step => step.completed).length, 0);
+    const totalSteps = this.tasks.reduce(
+      (acc, task) => acc + this.tasks.length,
+      0
+    );
+    const completedSteps = this.tasks.reduce(
+      (acc, task) => acc + this.tasks.filter((step) => step.completed).length,
+      0
+    );
 
     return (completedSteps / totalSteps) * 100;
   }
@@ -57,22 +65,24 @@ export class TaskListComponent implements OnInit {
 
   checkAll() {
     this.selectAll = true;
-    this.tasks.forEach(task => {
-      this.tasks.forEach(step => step.completed = true);
+    this.tasks.forEach((task) => {
+      this.tasks.forEach((step) => (step.completed = true));
     });
   }
 
   uncheckAll() {
     this.selectAll = false;
-    this.tasks.forEach(task => {
-      this.tasks.forEach(step => step.completed = false);
+    this.tasks.forEach((task) => {
+      this.tasks.forEach((step) => (step.completed = false));
     });
   }
 
-  getProgress(task: Task): number { if (task.steps) {
-    const completedSteps = task.steps.filter((step) => step.completed).length;
-    return (completedSteps / task.steps.length) * 100;
-    
+  getProgress(task: Task): number {
+    if (task.steps) {
+      const completedSteps = task.steps.filter((step) => step.completed).length;
+      return (completedSteps / task.steps.length) * 100;
+    } else {
+      return 0;
+    }
   }
-  else { return 0; }}
 }
