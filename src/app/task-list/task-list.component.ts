@@ -15,7 +15,6 @@ interface TaskView {
 })
 export class TaskListComponent implements OnInit {
   TaskType = TaskType;
-
   selectAll: boolean = false;
   tasks: Task[] = [];
   allTasks: Task[] = [];
@@ -38,12 +37,12 @@ export class TaskListComponent implements OnInit {
 
   filterTasksByTaskType(taskType: string) {
     this.tasks = this.allTasks.filter((task: Task) => task.taskType === taskType);
-    console.log(this.tasks);
   }
 
   showStepDescription(description: string): void {
     alert(description);
   }
+  
 
   getTotalProgress(): number {
     const totalSteps = this.tasks.reduce(

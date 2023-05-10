@@ -3,7 +3,7 @@
     <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"> </mat-checkbox>
 
     <mat-form-field>
-      <mat-label>Task Type</mat-label>
+      <mat-label>TaskType</mat-label>
       <mat-select [(value)]="selectedTaskType" (selectionChange)="filterTasksByTaskType(selectedTaskType)">
         <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
           {{ taskType }}
