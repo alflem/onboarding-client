@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FlowerComponent } from './components/flower/flower.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ThemeService } from './theme.service';

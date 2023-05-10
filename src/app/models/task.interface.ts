@@ -5,5 +5,12 @@ export interface Task {
     url: string;
     completed: boolean;
     description: string; 
+    steps:any[];
   
 }   
+
+export enum TaskType {
+    BEFORE_START,
+    AFTER_START_BUDDY,
+    AFTER_START_RECRUIT,
+  }

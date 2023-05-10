@@ -15,4 +15,8 @@ export class TaskService {
     let task:Observable<Task[]> = this.http.get<Task[]>('http://localhost:8080/api/tasks');
     return task;
   }
+
+  getTasksByTaskType(taskType: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`http://localhost:8080/api/tasks/tasks?taskType=${taskType}`);
+  }
 }
