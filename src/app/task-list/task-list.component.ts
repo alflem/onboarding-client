@@ -19,20 +19,21 @@ export class TaskListComponent implements OnInit {
   
   selectAll: boolean = false;
   tasks: Task[] = [];
+  activeTasks: Task[] = [];
   selectedTaskType: TaskType = TaskType.BEFORE_START;
   taskTypes = Object.values(TaskType).filter(value => typeof value === 'string');
   constructor(private taskService: TaskService) { }
 
   fetchTasksByTaskType(taskType: string): void {
-    this.taskService.getTasksByTaskType(taskType).subscribe((tasks) => {
-      this.tasks = tasks;
-    });
+    this.activeTasks = this.tasks.filter(t => t.taskType === taskType);
+      
   }
 
 
   ngOnInit(): void {
     this.taskService.getAllTasks().subscribe((data: Task[]) => {
       this.tasks = data
+      this.fetchTasksByTaskType(TaskType[0]);
 
      
     });
