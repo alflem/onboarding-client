@@ -8,7 +8,3 @@ import { Component } from '@angular/core';
 export class TaskComponent {
 
 }
-
-showStepDescription(description: string): void {
-  alert(description);
-}
