@@ -1,6 +1,6 @@
 <div class="task-list">
   <div class="header">
-    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"> </mat-checkbox>
+    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox>
 
     <mat-form-field>
       <mat-label>TaskType</mat-label>
@@ -10,7 +10,6 @@
         </mat-option>
       </mat-select>
       {{ selectedTaskType }}
-      
     </mat-form-field>
 
     <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar>

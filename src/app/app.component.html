@@ -1,11 +1,11 @@
 <div [class.darkTheme]="isDarkMode">
-<mat-toolbar color="primary">
+  <mat-toolbar color="primary">
     <span>Welcome to the Onboarding App</span>
-    <button mat-icon-button (click)="isDarkMode=!isDarkMode">
+    <button mat-icon-button (click)="isDarkMode = !isDarkMode">
       <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_3' }}</mat-icon>
-    </button>  
+    </button>
   </mat-toolbar>
-  
+
   <div class="container">
     <mat-card class="card">
       <mat-card-header>
@@ -15,16 +15,28 @@
       <mat-card-content>
         <p>Follow our step-by-step guide to complete your onboarding process and become a part of our community.</p>
       </mat-card-content>
-      <mat-card-actions>     
+      <mat-card-actions>
         <button mat-raised-button color="primary" routerLink="/"><mat-icon>home</mat-icon></button>
-       <!-- <button mat-raised-button color="primary" routerLink="/onboarding">Påbörja onboarding</button>
+        <!-- <button mat-raised-button color="primary" routerLink="/onboarding">Påbörja onboarding</button>
         <button mat-raised-button color="secondary" routerLink="/onboarding">test</button> -->
-        <button mat-raised-button color="warn" routerLink="/task-list"> 
-          
+        <button mat-raised-button color="warn" routerLink="/task-list">
           Att göra-lista
         </button>
+   
       </mat-card-actions>
     </mat-card>
+         <!-- Display persons -->
+         <div *ngFor="let person of persons">
+          {{ person.name }} ({{ person.email }})
+          <button *ngIf="person.active" (click)="setPersonInactive(person.id)">Set Inactive</button>
+        </div>
+
+        <!-- Form to create a new person -->
+        <form (ngSubmit)="createPerson(newPerson)" #personForm="ngForm">
+          <input [(ngModel)]="newPerson.name" name="name" required placeholder="Name">
+          <input [(ngModel)]="newPerson.email" name="email" required email placeholder="Email">
+          <button type="submit" [disabled]="personForm.invalid">Create new person</button>
+        </form>
     <router-outlet></router-outlet>
   </div>
 </div>

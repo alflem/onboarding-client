@@ -14,3 +14,13 @@ export enum TaskType {
     AFTER_START_BUDDY,
     AFTER_START_RECRUIT,
   }
+
+  export interface Person {
+    id: number;
+    name: string;
+    age: number;
+    email: string;
+    tasks: any[];
+    active: boolean;
+  }
+  
