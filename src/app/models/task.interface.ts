@@ -6,7 +6,7 @@ export interface Task {
     completed: boolean;
     description: string; 
     steps:any[];
-  
+    active: boolean;
 }   
 
 export enum TaskType {

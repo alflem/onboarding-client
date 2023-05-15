@@ -22,4 +22,14 @@ export class PersonService {
   setPersonInactive(id: number): Observable<Person> {
     return this.http.put<Person>(`${this.apiUrl}/${id}/inactive`, {});
   }
+
+  addTask(personId: number, task: any[]): Observable<Person> {
+    const url = `${this.apiUrl}/${personId}/tasks`;
+    return this.http.post<Person>(url, task);
+  }
+
+  removeTask(personId: number, taskId: number): Observable<Person> {
+    const url = `${this.apiUrl}/${personId}/tasks/${taskId}`;
+    return this.http.delete<Person>(url);
+  }
 }
