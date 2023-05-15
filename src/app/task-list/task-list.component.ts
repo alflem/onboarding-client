@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Task } from '../models/task.interface';
 import { TaskType } from '../models/task.interface';
+import { ActivatedRoute } from '@angular/router';
+import { PersonService } from '../person.service';
+import { Person } from '../models/task.interface';
 
 interface TaskView {
   title: string;
@@ -19,10 +22,16 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   allTasks: Task[] = [];
   selectedTaskType: string = '';
+  person: Person | undefined;
   taskTypes = Object.values(TaskType).filter(
     (value) => typeof value === 'string'
   );
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private route: ActivatedRoute,
+    private personService: PersonService
+    
+    ) {}
 
   fetchTasksByTaskType(taskType: string): void {
     this.allTasks = this.tasks.filter((t) => t.taskType === taskType);
@@ -32,6 +41,7 @@ export class TaskListComponent implements OnInit {
     this.taskService.getAllTasks().subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.allTasks = tasks;
+      
     });
   }
 

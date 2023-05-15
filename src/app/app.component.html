@@ -26,7 +26,10 @@
       </mat-card-actions>
     </mat-card>
     <div *ngFor="let person of persons">
-      <h3>{{ person.name }} ({{ person.email }})</h3>
+      <h3 (click)="goToPersonTasks(person.id)">{{ person.name }} ({{ person.email }})</h3>
+      <!-- Rest of the content -->
+    
+    
     
       <!-- Display uncompleted tasks -->
       <div *ngIf="person.tasks.length > 0">

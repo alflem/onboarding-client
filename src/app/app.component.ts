@@ -77,4 +77,8 @@ export class AppComponent implements OnInit {
       this.persons[personIndex] = updatedPerson;
     });
   }
+  goToPersonTasks(personId: number): void {
+    this.router.navigate(['/task-list', personId]);
+  }
+  
 }
