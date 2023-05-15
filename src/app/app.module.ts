@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FokusgruppComponent } from './fokusgrupp/fokusgrupp.component';
+import { TaskFilterPipe } from './task-filter.pipe';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FokusgruppComponent } from './fokusgrupp/fokusgrupp.component';
     AppComponent,
     TodoListComponent,
     TaskListComponent,
-    FokusgruppComponent
+    FokusgruppComponent,
+    TaskFilterPipe
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 import { ThemeService } from './theme.service';
 import { PersonService } from './person.service';
 import { Person } from './models/task.interface';
+import { TaskFilterPipe } from './task-filter.pipe';
 
 @Component({
   selector: 'app-root',
@@ -62,5 +63,18 @@ export class AppComponent implements OnInit {
 
   showFlowerComponent() {
     return this.showFlower;
+  }
+  addTask(personId: number, task: any[]): void {
+    this.personService.addTask(personId, task).subscribe((updatedPerson) => {
+      const personIndex = this.persons.findIndex((person) => person.id === updatedPerson.id);
+      this.persons[personIndex] = updatedPerson;
+    });
+  }
+
+  removeTask(personId: number, taskId: number): void {
+    this.personService.removeTask(personId, taskId).subscribe((updatedPerson) => {
+      const personIndex = this.persons.findIndex((person) => person.id === updatedPerson.id);
+      this.persons[personIndex] = updatedPerson;
+    });
   }
 }

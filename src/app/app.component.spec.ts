@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { TaskFilterPipe } from './task-filter.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -10,6 +11,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent
+        
       ],
     }).compileComponents();
   });

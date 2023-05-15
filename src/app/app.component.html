@@ -25,12 +25,32 @@
    
       </mat-card-actions>
     </mat-card>
-         <!-- Display persons -->
-         <div *ngFor="let person of persons">
-          {{ person.name }} ({{ person.email }}) - {{ person.active ? 'Active' : 'Inactive' }}
-          <button *ngIf="person.active" (click)="setPersonInactive(person.id)">Set Inactive</button>
-          <button *ngIf="!person.active" (click)="setPersonActive(person.id)">Reactivate</button>
-        </div>
+    <div *ngFor="let person of persons">
+      <h3>{{ person.name }} ({{ person.email }})</h3>
+    
+      <!-- Display uncompleted tasks -->
+      <div *ngIf="person.tasks.length > 0">
+        <h4>Uncompleted Tasks:</h4>
+        <ul>
+          <li *ngFor="let task of person.tasks | taskFilter: false">
+            {{ task.title }}
+            <button (click)="removeTask(person.id, task.id)">Mark as Completed</button>
+          </li>
+        </ul>
+      </div>
+    
+      <!-- Display completed tasks -->
+      <div *ngIf="person.tasks.length > 0">
+        <h4>Completed Tasks:</h4>
+        <ul>
+          <li *ngFor="let task of person.tasks | taskFilter: true">
+            {{ task.title }}
+            <button (click)="removeTask(person.id, task.id)">Mark as Incomplete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
         
 
         <!-- Form to create a new person -->
