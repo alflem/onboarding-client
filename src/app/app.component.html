@@ -1,6 +1,6 @@
 <div [class.darkTheme]="isDarkMode">
   <mat-toolbar color="primary">
-    <span>Welcome to the Onboarding App</span>
+    <span>Xlent Luleå</span>
     <button mat-icon-button (click)="isDarkMode = !isDarkMode">
       <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_3' }}</mat-icon>
     </button>
@@ -9,11 +9,11 @@
   <div class="container">
     <mat-card class="card">
       <mat-card-header>
-        <mat-card-title>Get Started</mat-card-title>
-        <mat-card-subtitle>Complete the onboarding process</mat-card-subtitle>
+        <mat-card-title>XLU Onboarding</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>Follow our step-by-step guide to complete your onboarding process and become a part of our community.</p>
+        
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" routerLink="/"><mat-icon>home</mat-icon></button>
@@ -27,9 +27,11 @@
     </mat-card>
          <!-- Display persons -->
          <div *ngFor="let person of persons">
-          {{ person.name }} ({{ person.email }})
+          {{ person.name }} ({{ person.email }}) - {{ person.active ? 'Active' : 'Inactive' }}
           <button *ngIf="person.active" (click)="setPersonInactive(person.id)">Set Inactive</button>
+          <button *ngIf="!person.active" (click)="setPersonActive(person.id)">Reactivate</button>
         </div>
+        
 
         <!-- Form to create a new person -->
         <form (ngSubmit)="createPerson(newPerson)" #personForm="ngForm">

@@ -47,10 +47,17 @@ export class AppComponent implements OnInit {
   }
 
   setPersonInactive(id: number): void {
-    this.personService.setPersonInactive(id).subscribe((updatedPerson) => {
-      const personIndex = this.persons.findIndex((person) => person.id === updatedPerson.id);
-      this.persons[personIndex] = updatedPerson;
-    });
+    const personIndex = this.persons.findIndex((person) => person.id === id);
+    if (personIndex !== -1) {
+      this.persons[personIndex].active = false;
+    }
+  }
+
+  setPersonActive(id: number): void {
+    const personIndex = this.persons.findIndex((person) => person.id === id);
+    if (personIndex !== -1) {
+      this.persons[personIndex].active = true;
+    }
   }
 
   showFlowerComponent() {
