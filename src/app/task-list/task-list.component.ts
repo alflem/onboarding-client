@@ -5,6 +5,7 @@ import { TaskType } from '../models/task.interface';
 import { ActivatedRoute } from '@angular/router';
 import { PersonService } from '../person.service';
 import { Person } from '../models/task.interface';
+import { map, pluck } from 'rxjs';
 
 interface TaskView {
   title: string;
@@ -23,6 +24,7 @@ export class TaskListComponent implements OnInit {
   allTasks: Task[] = [];
   selectedTaskType: string = '';
   person: Person | undefined;
+  personId: string | undefined;
   taskTypes = Object.values(TaskType).filter(
     (value) => typeof value === 'string'
   );
@@ -31,13 +33,16 @@ export class TaskListComponent implements OnInit {
     private route: ActivatedRoute,
     private personService: PersonService
     
-    ) {}
+    
+    ) {
+  }
 
   fetchTasksByTaskType(taskType: string): void {
     this.allTasks = this.tasks.filter((t) => t.taskType === taskType);
   }
 
   ngOnInit(): void {
+    this.route.snapshot.params['personId']
     this.taskService.getAllTasks().subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.allTasks = tasks;
