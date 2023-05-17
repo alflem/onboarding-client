@@ -7,7 +7,7 @@ import { Person } from './models/task.interface';
   providedIn: 'root',
 })
 export class PersonService {
-  private apiUrl = 'http://localhost:8080/api/persons';
+  private apiUrl = 'http://localhost:8081/api/persons';
 
   constructor(private http: HttpClient) {}
 
@@ -19,9 +19,15 @@ export class PersonService {
     return this.http.post<Person>(this.apiUrl, person);
   }
 
+
   setPersonInactive(id: number): Observable<Person> {
     return this.http.put<Person>(`${this.apiUrl}/${id}/inactive`, {});
   }
+
+  setPersonActive(id: number): Observable<Person> {
+    return this.http.put<Person>(`${this.apiUrl}/${id}/active`, {});
+  }
+
 
   addTask(personId: number, task: any[]): Observable<Person> {
     const url = `${this.apiUrl}/${personId}/tasks`;

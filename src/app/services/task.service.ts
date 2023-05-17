@@ -12,11 +12,11 @@ export class TaskService {
   constructor(private http:HttpClient) {}
 
   getAllTasks (): Observable<Task[]> {
-    let task:Observable<Task[]> = this.http.get<Task[]>('http://localhost:8080/api/tasks');
+    let task:Observable<Task[]> = this.http.get<Task[]>('http://localhost:8081/api/tasks');
     return task;
   }
 
   getTasksByTaskType(taskType: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`http://localhost:8080/api/tasks/tasks?taskType=${taskType}`);
+    return this.http.get<Task[]>(`http://localhost:8081/api/tasks/tasks?taskType=${taskType}`);
   }
 }
