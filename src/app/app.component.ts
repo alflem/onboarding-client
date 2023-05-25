@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   showFlower = true;
   isDarkMode = false;
   persons: Person[] = [];
-  newPerson: Person = { id: 0, name: '', age: 0, email: '', tasks: [], active: true };
+  newPerson: Person = { id: 0, name: '', email: '', tasks: [], active: true };
+  activePersons: Person[] = []
 
 
   constructor(
@@ -31,8 +32,23 @@ export class AppComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.getPersons();
+ // In your Angular component
+ngOnInit(): void {
+  this.personService.getAllPersons().subscribe((persons) => {
+    this.activePersons = persons;
+  });
+}
+
+
+  
+
+
+  
+
+  getActivePersons(): void {
+    this.personService.getActivePersons().subscribe((persons) => {
+      this.activePersons = persons;
+    });
   }
 
   getPersons(): void {

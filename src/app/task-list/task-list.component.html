@@ -1,6 +1,17 @@
+<!--task-list.component.html-->
 <div class="task-list">
   <div class="header">
     <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox>
+
+    <mat-form-field>
+      <mat-label>Pågående Onboarders</mat-label>
+      <!-- <mat-select [(value)]="selectedPerson" (selectionChange)="getTasksByPersonId(selectedPerson)">-->
+        <mat-option *ngFor="let person of activePersons" [value]="person">
+          {{ person.name }}
+        </mat-option>
+      <!--</mat-select>-->
+      {{ selectedPerson.name }}
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>TaskType</mat-label>
@@ -12,27 +23,19 @@
       {{ selectedTaskType }}
     </mat-form-field>
 
-    <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar>
+  <!--  <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar> -->
   </div>
 
-  <ng-container *ngFor="let task of tasks">
-    <ng-container *ngIf="task.taskType === selectedTaskType">
-      <div class="task-row">
-        <div class="task">
-          <h3>{{ task.title }}</h3>
-          <mat-progress-bar mode="determinate" [value]="getProgress(task)"></mat-progress-bar>
-          <div class="steps">
-            <ng-container *ngFor="let step of task.steps">
-              <div class="step">
-                <mat-checkbox [(ngModel)]="step.completed" (change)="onCheckboxChange()">
-                  <a [href]="step.url" target="_blank">{{ step.title }}</a>
-                </mat-checkbox>
-                <button mat-button (click)="showStepDescription(step.description)">Se mer</button>
-              </div>
-            </ng-container>
+  <ng-container *ngIf="selectedPerson">
+    <ng-container *ngFor="let task of selectedPerson.tasks">
+      <ng-container *ngIf="task.taskType === selectedTaskType">
+        <div class="task-row">
+          <div class="task">
+            <h3>{{ task.title }}</h3>
+            <mat-progress-bar mode="determinate" [value]="getProgress(task)"></mat-progress-bar>
           </div>
         </div>
-      </div>
+      </ng-container>
     </ng-container>
   </ng-container>
 </div>

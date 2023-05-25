@@ -1,3 +1,4 @@
+//app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +24,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FokusgruppComponent } from './fokusgrupp/fokusgrupp.component';
 import { TaskFilterPipe } from './task-filter.pipe';
+import { AddPersonComponent } from './add-person/add-person.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { TaskFilterPipe } from './task-filter.pipe';
     TodoListComponent,
     TaskListComponent,
     FokusgruppComponent,
+    AddPersonComponent,
     TaskFilterPipe
+
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,8 @@ import { TaskFilterPipe } from './task-filter.pipe';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
+    ReactiveFormsModule,
+    MatInputModule,
     MatOptionModule
   ],
   providers: [],

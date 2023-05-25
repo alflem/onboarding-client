@@ -1,9 +1,21 @@
+<!--app.component.html-->
 <div [class.darkTheme]="isDarkMode">
   <mat-toolbar color="primary">
     <span>Xlent Luleå</span>
     <button mat-icon-button (click)="isDarkMode = !isDarkMode">
       <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_3' }}</mat-icon>
     </button>
+    
+    <mat-form-field>
+      <mat-label>Pågående Onboarders</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let person of activePersons" [value]="person">
+          {{ person.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+
   </mat-toolbar>
 
   <div class="container">
@@ -11,14 +23,17 @@
       <mat-card-header>
         <mat-card-title>XLU Onboarding</mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
+        
       </mat-card-header>
       <mat-card-content>
         
       </mat-card-content>
       <mat-card-actions>
+        
+        
         <button mat-raised-button color="primary" routerLink="/"><mat-icon>home</mat-icon></button>
         <!-- <button mat-raised-button color="primary" routerLink="/onboarding">Påbörja onboarding</button>-->
-        <button mat-raised-button color="secondary" routerLink="/onboarding">Lägg till ny person</button> 
+        <button mat-raised-button color="secondary" routerLink="/add-person">Lägg till ny person</button>
         <button mat-raised-button color="warn" routerLink="/task-list">
           Att göra-lista
         </button>

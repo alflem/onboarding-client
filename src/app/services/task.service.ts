@@ -1,3 +1,5 @@
+//task.service.ts
+//Purpose: To provide a service for the Task model
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,5 +20,12 @@ export class TaskService {
 
   getTasksByTaskType(taskType: string): Observable<Task[]> {
     return this.http.get<Task[]>(`http://localhost:8081/api/tasks/tasks?taskType=${taskType}`);
+
+
   }
+
+  getTasksByPersonId(personId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`http://localhost:8081/person/${personId}`);
+  }
+  
 }

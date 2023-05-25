@@ -1,41 +1,53 @@
+// person.service.ts
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Person } from './models/task.interface';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class PersonService {
-  private apiUrl = 'http://localhost:8081/api/persons';
+  private personsUrl = 'http://localhost:8081'; // Replace with your Spring Boot server address and port
 
   constructor(private http: HttpClient) {}
 
+  // In PersonService
+getAllPersons(): Observable<Person[]> {
+  return this.http.get<Person[]>(`${this.personsUrl}/persons`);
+}
+
+
   getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.apiUrl);
+    const url = `${this.personsUrl}/persons`;
+    return this.http.get<Person[]>(url);
+  }
+
+  getActivePersons(): Observable<Person[]> {
+    const url = `${this.personsUrl}/activePersons`;
+    return this.http.get<Person[]>(url);
   }
 
   createPerson(person: Person): Observable<Person> {
-    return this.http.post<Person>(this.apiUrl, person);
+    const url = `${this.personsUrl}/createPerson`;
+    return this.http.post<Person>(url, person);
   }
 
-
-  setPersonInactive(id: number): Observable<Person> {
-    return this.http.put<Person>(`${this.apiUrl}/${id}/inactive`, {});
-  }
-
-  setPersonActive(id: number): Observable<Person> {
-    return this.http.put<Person>(`${this.apiUrl}/${id}/active`, {});
+  updatePerson(person: Person): Observable<Person> {
+    const url = `${this.personsUrl}/updatePerson`;
+    return this.http.post<Person>(url, person);
   }
 
 
   addTask(personId: number, task: any[]): Observable<Person> {
-    const url = `${this.apiUrl}/${personId}/tasks`;
+    const url = `${this.personsUrl}/${personId}/tasks`;
     return this.http.post<Person>(url, task);
   }
 
   removeTask(personId: number, taskId: number): Observable<Person> {
-    const url = `${this.apiUrl}/${personId}/tasks/${taskId}`;
+    const url = `${this.personsUrl}/${personId}/tasks/${taskId}`;
     return this.http.delete<Person>(url);
   }
 }

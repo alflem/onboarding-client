@@ -1,0 +1,24 @@
+<form [formGroup]="personForm" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter name" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      placeholder="Enter email"
+      required
+      type="email"
+    />
+  </mat-form-field>
+
+  <!-- Hidden field for 'active' -->
+  <input type="hidden" formControlName="active">
+
+  <button mat-raised-button color="primary" type="submit">
+    Add Person
+  </button>
+</form>

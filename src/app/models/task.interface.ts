@@ -1,3 +1,4 @@
+//task.interface.ts
 export interface Task {
     title: string;
     id:number;
@@ -5,8 +6,8 @@ export interface Task {
     url: string;
     completed: boolean;
     description: string; 
-    steps:any[];
     active: boolean;
+    person_id: BigInt;
 }   
 
 export enum TaskType {
@@ -18,10 +19,10 @@ export enum TaskType {
   export interface Person {
     id: number;
     name: string;
-    age: number;
     email: string;
     tasks: any[];
     active: boolean;
+  
   }
   
   
