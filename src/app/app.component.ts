@@ -5,6 +5,7 @@ import { ThemeService } from './theme.service';
 import { PersonService } from './person.service';
 import { Person } from './models/task.interface';
 import { TaskFilterPipe } from './task-filter.pipe';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
@@ -34,9 +35,10 @@ export class AppComponent implements OnInit {
 
  // In your Angular component
 ngOnInit(): void {
-  this.personService.getAllPersons().subscribe((persons) => {
+  this.personService.getActivePersons().subscribe((persons) => {
     this.activePersons = persons;
   });
+  
 }
 
 

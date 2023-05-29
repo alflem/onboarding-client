@@ -10,7 +10,7 @@
       <mat-label>Pågående Onboarders</mat-label>
       <mat-select>
         <mat-option *ngFor="let person of activePersons" [value]="person">
-          {{ person.name }}
+          {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}
         </mat-option>
       </mat-select>
     </mat-form-field>

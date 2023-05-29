@@ -12,13 +12,15 @@
       placeholder="Enter email"
       required
       type="email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      title="Please enter a valid email address"
     />
+    <mat-error *ngIf="personForm.get('email')?.hasError('email')">
+      Please enter a valid email address.
+    </mat-error>
   </mat-form-field>
-
-  <!-- Hidden field for 'active' -->
-  <input type="hidden" formControlName="active">
-
-  <button mat-raised-button color="primary" type="submit">
+  
+  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid">
     Add Person
   </button>
-</form>
+  

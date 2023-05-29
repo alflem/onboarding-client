@@ -3,15 +3,7 @@
   <div class="header">
     <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox>
 
-    <mat-form-field>
-      <mat-label>Pågående Onboarders</mat-label>
-      <!-- <mat-select [(value)]="selectedPerson" (selectionChange)="getTasksByPersonId(selectedPerson)">-->
-        <mat-option *ngFor="let person of activePersons" [value]="person">
-          {{ person.name }}
-        </mat-option>
-      <!--</mat-select>-->
-      {{ selectedPerson.name }}
-    </mat-form-field>
+
 
     <mat-form-field>
       <mat-label>TaskType</mat-label>
