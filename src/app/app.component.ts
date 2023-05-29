@@ -1,11 +1,11 @@
+//app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ThemeService } from './theme.service';
 import { PersonService } from './person.service';
+import { TaskService } from './services/task.service';
 import { Person } from './models/task.interface';
-import { TaskFilterPipe } from './task-filter.pipe';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +19,17 @@ export class AppComponent implements OnInit {
   persons: Person[] = [];
   newPerson: Person = { id: 0, name: '', email: '', tasks: [], active: true };
   activePersons: Person[] = []
+  selectedPerson: Person | null = null;
+  selectedTaskType: string | null = null;
+
+
 
 
   constructor(
     private router: Router,
     public themeService: ThemeService,
-    private personService: PersonService
+    private personService: PersonService,
+    private taskService: TaskService
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -42,16 +47,26 @@ ngOnInit(): void {
 }
 
 
-  
+getPersonTasks(personId: number, taskType: string) {
+  this.taskService.getTasksByPersonAndType(personId, taskType)
+      .subscribe(tasks => this.selectedPerson ? this.selectedPerson.tasks = tasks : null);
+}
 
 
-  
+
+filterTasksByTaskType(taskType: string) {
+  if(this.selectedPerson){
+      this.getPersonTasks(this.selectedPerson.id, taskType);
+  }
+}
+
 
   getActivePersons(): void {
     this.personService.getActivePersons().subscribe((persons) => {
       this.activePersons = persons;
     });
   }
+
 
   getPersons(): void {
     this.personService.getPersons().subscribe((persons) => {

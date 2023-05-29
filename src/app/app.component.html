@@ -8,12 +8,13 @@
     
     <mat-form-field>
       <mat-label>Pågående Onboarders</mat-label>
-      <mat-select>
+      <mat-select [(value)]="selectedPerson" (selectionChange)="selectedPerson && selectedTaskType && getPersonTasks(selectedPerson.id, selectedTaskType)">
         <mat-option *ngFor="let person of activePersons" [value]="person">
           {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    
     
 
   </mat-toolbar>

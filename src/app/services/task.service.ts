@@ -27,5 +27,10 @@ export class TaskService {
   getTasksByPersonId(personId: number): Observable<Task[]> {
     return this.http.get<Task[]>(`http://localhost:8081/person/${personId}`);
   }
+
+  getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`http://localhost:8081/person/${personId}/tasks/${taskType}`);
+  }
+  
   
 }
