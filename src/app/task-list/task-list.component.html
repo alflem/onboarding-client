@@ -1,0 +1,33 @@
+<!--task-list.component.html-->
+<div class="task-list">
+  <div class="header">
+    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox>
+
+
+
+    <mat-form-field>
+      <mat-label>TaskType</mat-label>
+      <mat-select [(value)]="selectedTaskType" (selectionChange)="filterTasksByTaskType(selectedTaskType)">
+        <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
+          {{ taskType }}
+        </mat-option>
+      </mat-select>
+      {{ selectedTaskType }}
+    </mat-form-field>
+
+  <!--  <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar> -->
+  </div>
+
+  <ng-container *ngIf="selectedPerson">
+    <ng-container *ngFor="let task of selectedPerson.tasks">
+      <ng-container *ngIf="task.taskType === selectedTaskType">
+        <div class="task-row">
+          <div class="task">
+            <h3>{{ task.title }}</h3>
+            <mat-progress-bar mode="determinate" [value]="getProgress(task)"></mat-progress-bar>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

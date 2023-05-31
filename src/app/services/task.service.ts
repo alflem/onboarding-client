@@ -1,30 +1,30 @@
+//task.service.ts
+//Purpose: To provide a service for the Task model
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Task } from '../models/task.interface';
 
-export interface Task {
-  title: string;
-  isFinished: boolean;
-}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private tasks: Task[] = [
-    { title: 'Task 1', isFinished: false },
-    { title: 'Task 2', isFinished: false },
-    { title: 'Task 3', isFinished: false }
-  ];
+  constructor(private http:HttpClient) {}
 
-  constructor() {}
+  getTasksByPerson (personId: number): Observable<Task[]> {
+    let tasks:Observable<Task[]> = this.http.get<Task[]>(`http://localhost:8081/person/${personId}/tasks`);
+    return tasks;
+}
 
-  getTasks(): Task[] {
-    return this.tasks;
+  getTasksByPersonId(personId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(`http://localhost:8081/person/${personId}`);
   }
 
-  updateTask(task: Task): void {
-    const index = this.tasks.findIndex(t => t === task);
-    if (index !== -1) {
-      this.tasks[index] = task;
-    }
+  getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`http://localhost:8081/person/${personId}/tasks/${taskType}`);
   }
+  
+  
 }

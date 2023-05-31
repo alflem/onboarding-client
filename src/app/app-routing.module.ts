@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FlowerComponent } from './components/flower/flower.component';
-import { TodoListComponent } from './containers/todo-list/todo-list.component';
+import { RouterModule, Routes, Router } from '@angular/router';
+import { TaskListComponent } from './task-list/task-list.component';
+import { HomeComponent } from './containers/home/home.component';
+import { AddPersonComponent } from './add-person/add-person.component';
+
 
 const routes: Routes = [
-  { path: '', component: FlowerComponent },
-  { path: 'todo-list', component: TodoListComponent }
+  { path: '', component: HomeComponent },
+  { path: 'task-list', component: TaskListComponent },
+  { path: 'add-person', component: AddPersonComponent },
+  { path: 'task-list/:personId', component: TaskListComponent }
+  
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

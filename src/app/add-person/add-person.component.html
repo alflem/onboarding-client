@@ -1,0 +1,26 @@
+<form [formGroup]="personForm" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter name" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      placeholder="Enter email"
+      required
+      type="email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      title="Please enter a valid email address"
+    />
+    <mat-error *ngIf="personForm.get('email')?.hasError('email')">
+      Please enter a valid email address.
+    </mat-error>
+  </mat-form-field>
+  
+  <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid">
+    Add Person
+  </button>
+  
