@@ -5,7 +5,9 @@ import { filter } from 'rxjs/operators';
 import { ThemeService } from './theme.service';
 import { PersonService } from './person.service';
 import { TaskService } from './services/task.service';
-import { Person } from './models/task.interface';
+import { Person, Task } from './models/task.interface';
+import { SelectedPersonService } from './services/selectedperson.service';
+
 
 @Component({
   selector: 'app-root',
@@ -21,15 +23,18 @@ export class AppComponent implements OnInit {
   activePersons: Person[] = []
   selectedPerson: Person | null = null;
   selectedTaskType: string | null = null;
+  tasks: Task[] = [];
 
-
+ 
 
 
   constructor(
     private router: Router,
     public themeService: ThemeService,
     private personService: PersonService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private selectedPersonService: SelectedPersonService
+    
   ) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -55,10 +60,18 @@ getPersonTasks(personId: number, taskType: string) {
 
 
 filterTasksByTaskType(taskType: string) {
-  if(this.selectedPerson){
-      this.getPersonTasks(this.selectedPerson.id, taskType);
+  if (this.selectedPerson) {
+    this.taskService.getTasksByPersonAndType(this.selectedPerson.id, taskType)
+      .subscribe((tasks: Task[]) => {
+        this.tasks = tasks;
+      });
   }
 }
+
+onPersonSelected(personId: string) {
+  this.selectedPersonService.setPersonId(personId);
+}
+
 
 
   getActivePersons(): void {

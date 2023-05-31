@@ -7,12 +7,9 @@ import { TaskType } from '../models/task.interface';
 import { ActivatedRoute } from '@angular/router';
 import { PersonService } from '../person.service';
 import { Person } from '../models/task.interface';
-import { map, pluck } from 'rxjs';
+import { SelectedPersonService } from '../services/selectedperson.service';
 
-interface TaskView {
-  title: string;
-  id: number;
-}
+
 
 @Component({
   selector: 'app-task-list',
@@ -38,7 +35,8 @@ export class TaskListComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private personService: PersonService
+    private personService: PersonService,
+    private selectedPersonService: SelectedPersonService
     
     
     ) {
@@ -50,23 +48,40 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.snapshot.params['personId']
-    this.taskService.getAllTasks().subscribe((tasks: Task[]) => {
+    this.route.snapshot.params['personId'];
+    let personId = this.selectedPersonService.getPersonId();
+    if (!personId) {
+      personId = this.getNewestPersonId();
+    }
+    this.taskService.getTasksByPerson(+personId).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.allTasks = tasks;
-      
     });
-  
   }
+  
+  
+  
+
+  getNewestPersonId(): string {
+    // TODO: Implement this function properly
+    return '1'; // Placeholder
+  }
+  
 
   filterTasksByTaskType(taskType: string) {
-    this.tasks = this.allTasks.filter((task: Task) => task.taskType === taskType);
+    if (this.selectedPerson) {
+      this.taskService.getTasksByPersonAndType(this.selectedPerson.id, taskType)
+        .subscribe((tasks: Task[]) => {
+          this.tasks = tasks;
+        });
+    }
   }
+  
 
 
   onCheckboxChange() {
     // Add your logic for handling the checkbox change event here
-    console.log('Checkbox state changed');
+    console.log('Checkbox state changed'); // Remove this line
   }
 
   checkAll() {
@@ -83,8 +98,8 @@ export class TaskListComponent implements OnInit {
   }
 
   getProgress(task: Task): number {
-
-      return 0;
+    return 0;
+      
     
   }
 }

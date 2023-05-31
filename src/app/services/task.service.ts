@@ -13,16 +13,10 @@ import { Task } from '../models/task.interface';
 export class TaskService {
   constructor(private http:HttpClient) {}
 
-  getAllTasks (): Observable<Task[]> {
-    let task:Observable<Task[]> = this.http.get<Task[]>('http://localhost:8081/api/tasks');
-    return task;
-  }
-
-  getTasksByTaskType(taskType: string): Observable<Task[]> {
-    return this.http.get<Task[]>(`http://localhost:8081/api/tasks/tasks?taskType=${taskType}`);
-
-
-  }
+  getTasksByPerson (personId: number): Observable<Task[]> {
+    let tasks:Observable<Task[]> = this.http.get<Task[]>(`http://localhost:8081/person/${personId}/tasks`);
+    return tasks;
+}
 
   getTasksByPersonId(personId: number): Observable<Task[]> {
     return this.http.get<Task[]>(`http://localhost:8081/person/${personId}`);
