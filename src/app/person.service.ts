@@ -6,13 +6,19 @@ import { Observable } from 'rxjs';
 import { Person } from './models/task.interface';
 
 
+
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class PersonService {
-  private personsUrl = 'http://localhost:8081'; // Replace with your Spring Boot server address and port
+  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
+  
 
   constructor(private http: HttpClient) {}
+
+ 
 
   
 getAllPersons(): Observable<Person[]> {
