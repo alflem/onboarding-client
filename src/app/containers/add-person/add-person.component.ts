@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonService } from '../person.service';
-import { Person } from '../models/task.interface';
+import { PersonService } from '../../person.service';
+import { Person } from '../../models/task.interface';
 import { HttpClient } from '@angular/common/http';
 
 

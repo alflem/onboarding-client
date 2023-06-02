@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-import { TaskListComponent } from './task-list/task-list.component';
+import { TaskListComponent } from './containers/task-list/task-list.component';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,9 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { FokusgruppComponent } from './fokusgrupp/fokusgrupp.component';
 import { TaskFilterPipe } from './task-filter.pipe';
-import { AddPersonComponent } from './add-person/add-person.component';
+import { AddPersonComponent } from './containers/add-person/add-person.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 
@@ -32,7 +31,6 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [
     AppComponent,
     TaskListComponent,
-    FokusgruppComponent,
     AddPersonComponent,
     TaskFilterPipe
 

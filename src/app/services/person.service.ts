@@ -3,7 +3,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Person } from './models/task.interface';
+import { Person } from '../models/task.interface';
+
+
+
 
 
 
@@ -13,22 +16,24 @@ import { Person } from './models/task.interface';
   providedIn: 'root',
 })
 export class PersonService {
-  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
+
+  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
   
+
 
   constructor(private http: HttpClient) {}
 
  
 
   
-getAllPersons(): Observable<Person[]> {
-  return this.http.get<Person[]>(`${this.personsUrl}/persons`);
-}
-
-getPerson(id: number): Observable<Person> {
-  return this.http.get<Person>(`${this.personsUrl}/person/${id}`);
-}
-
+  getAllPersons(): Observable<Person[]> {
+    return this.http.get<Person[]>(`${this.personsUrl}/persons`);
+  }
+  getPerson(): Observable<Person> {
+    const url = `${this.personsUrl}/person`;
+    return this.http.get<Person>(url);
+  }
+  
   getPersons(): Observable<Person[]> {
     const url = `${this.personsUrl}/persons`;
     return this.http.get<Person[]>(url);
