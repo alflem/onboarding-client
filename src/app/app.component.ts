@@ -58,19 +58,13 @@ getPersonTasks(personId: number, taskType: string) {
 }
 
 
-
-filterTasksByTaskType(taskType: string) {
-  if (this.selectedPerson) {
-    this.taskService.getTasksByPersonAndType(this.selectedPerson.id, taskType)
-      .subscribe((tasks: Task[]) => {
-        this.tasks = tasks;
-      });
-  }
+onPersonSelected(personId: number) {
+  console.log('onPersonSelected:', personId);
+  this.selectedPersonService.setPersonId(Number(personId));
+  // then call getPersonTasks with the selected task type
+  this.getPersonTasks(Number(personId), this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
 }
 
-onPersonSelected(personId: string) {
-  this.selectedPersonService.setPersonId(personId);
-}
 
 
 

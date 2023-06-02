@@ -10,7 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-import { TodoListComponent } from './containers/todo-list/todo-list.component';
 import { TaskListComponent } from './task-list/task-list.component';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -32,7 +31,6 @@ import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent,
     TaskListComponent,
     FokusgruppComponent,
     AddPersonComponent,
@@ -58,7 +56,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatOptionModule
   ],
-  providers: [],
+  providers: [
+    { provide: Window, useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

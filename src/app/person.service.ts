@@ -13,7 +13,7 @@ import { Person } from './models/task.interface';
   providedIn: 'root',
 })
 export class PersonService {
-  private personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
+  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
   
 
   constructor(private http: HttpClient) {}
@@ -25,6 +25,9 @@ getAllPersons(): Observable<Person[]> {
   return this.http.get<Person[]>(`${this.personsUrl}/persons`);
 }
 
+getPerson(id: number): Observable<Person> {
+  return this.http.get<Person>(`${this.personsUrl}/person/${id}`);
+}
 
   getPersons(): Observable<Person[]> {
     const url = `${this.personsUrl}/persons`;

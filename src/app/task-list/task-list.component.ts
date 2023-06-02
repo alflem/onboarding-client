@@ -29,7 +29,7 @@ export class TaskListComponent implements OnInit {
   taskTypes = Object.values(TaskType).filter(
     (value) => typeof value === 'string'
   );
-  selectedPerson: any = null; // assuming `any` is your `Person` type.
+  selectedPerson: Person | null = null;
   activePersons: any[] = []; // assuming `any` is your `Person` type
   
   constructor(
@@ -51,34 +51,46 @@ export class TaskListComponent implements OnInit {
     this.route.snapshot.params['personId'];
     let personId = this.selectedPersonService.getPersonId();
     if (!personId) {
-      personId = this.getNewestPersonId();
+      personId = Number(this.getNewestPersonId());
+      console.log('PersonId:', personId);
     }
     this.taskService.getTasksByPerson(+personId).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
       this.allTasks = tasks;
+      console.log('Alla tasks för personen:', this.tasks);
     });
+  
+    // Fetch the current selected person from the SelectedPersonService
+    this.selectedPerson = this.selectedPersonService.getSelectedPerson();
+    console.log('SelectedPerson:', this.selectedPerson);
   }
   
   
-  
 
+
+
+  filterTasksByTaskType(taskType: string) {
+    this.selectedPerson = this.selectedPersonService.getSelectedPerson();
+    if (this.selectedPerson) {
+      this.taskService.getTasksByPersonAndType(this.selectedPerson.id, taskType)
+        .subscribe((tasks: Task[]) => {
+          this.tasks = tasks;
+          if (this.selectedPerson) {
+            this.selectedPerson.tasks = tasks; // update selectedPerson tasks
+          }
+          console.log('Specifika tasks efter TaskType:', this.tasks);
+        });
+    } else {
+      console.log('selectedPerson is not defined');
+    }
+  }
+  
+  
   getNewestPersonId(): string {
     // TODO: Implement this function properly
     return '1'; // Placeholder
   }
   
-
-  filterTasksByTaskType(taskType: string) {
-    if (this.selectedPerson) {
-      this.taskService.getTasksByPersonAndType(this.selectedPerson.id, taskType)
-        .subscribe((tasks: Task[]) => {
-          this.tasks = tasks;
-        });
-    }
-  }
-  
-
-
   onCheckboxChange() {
     // Add your logic for handling the checkbox change event here
     console.log('Checkbox state changed'); // Remove this line
