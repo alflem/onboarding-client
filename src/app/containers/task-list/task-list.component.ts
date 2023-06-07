@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../services/task.service';
-import { Task } from '../models/task.interface';
-import { TaskType } from '../models/task.interface';
+import { TaskService } from 'src/app/services/task.service';
+import { Task } from 'src/app/models/task.interface';
+import { TaskType } from 'src/app/models/task.interface';
 import { ActivatedRoute } from '@angular/router';
-import { PersonService } from '../person.service';
-import { Person } from '../models/task.interface';
-import { SelectedPersonService } from '../services/selectedperson.service';
+import { PersonService } from 'src/app/person.service';
+import { Person } from 'src/app/models/task.interface';
+import { SelectedPersonService } from 'src/app/services/selectedperson.service';
 
 @Component({
   selector: 'app-task-list',

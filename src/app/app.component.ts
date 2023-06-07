@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ThemeService } from './theme.service';
-import { PersonService } from './services/person.service';
+import { PersonService } from './person.service';
 import { TaskService } from './services/task.service';
 import { Person, Task } from './models/task.interface';
 import { SelectedPersonService } from './services/selectedperson.service';
