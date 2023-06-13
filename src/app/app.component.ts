@@ -61,8 +61,9 @@ getPersonTasks(personId: number, taskType: string) {
 onPersonSelected(personId: number) {
   console.log('onPersonSelected:', personId);
   this.selectedPersonService.setPersonId(personId.toString());
+  let selectedPersonId = this.selectedPersonService.getPersonId();
   // then call getPersonTasks with the selected task type
-  this.getPersonTasks(Number(personId), this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
+  this.getPersonTasks(Number(selectedPersonId), this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
 }
 
 
