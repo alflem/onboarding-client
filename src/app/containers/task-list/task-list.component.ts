@@ -26,6 +26,10 @@ export class TaskListComponent implements OnInit {
   );
   selectedPerson: Person | null = null;
   activePersons: Person[] = [];
+  newTask: Task = { title: '', description: '', taskType: this.selectedTaskType, completed: false, active: true, url: '' };
+
+
+  
 
   constructor(
     private taskService: TaskService,
@@ -78,6 +82,16 @@ filterTasksByTaskType(taskType: string) {
     }
 }
 
+createTask() {
+  if (this.selectedPerson && this.selectedTaskType) {
+    this.taskService.createTask(this.selectedPerson.id, this.selectedTaskType, this.newTask)
+      .subscribe((task: Task) => {
+        console.log("Created task:", task);  // Add this line to print the created task
+        this.selectedPerson?.tasks.push(task);
+        this.newTask = { title: '', description: '', taskType: this.selectedTaskType, completed: false, active: true, url: '' };
+      });
+  }
+}
 
   getNewestPersonId(): string {
     // TODO: Implement this function properly

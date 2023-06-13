@@ -1,13 +1,13 @@
 //task.interface.ts
 export interface Task {
     title: string;
-    id:number;
+    id?:number;
     taskType: string;
-    url: string;
+    url?: string;
     completed: boolean;
     description: string; 
     active: boolean;
-    person_id: BigInt;
+    person_id?: BigInt;
 }   
 
 export enum TaskType {
