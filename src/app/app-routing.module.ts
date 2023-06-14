@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'task-list', component: TaskListComponent },
   { path: 'add-person', component: AddPersonComponent },
-  { path: 'task-list/:personId', component: TaskListComponent }
+  { path: 'BEFORE_START', component: TaskListComponent }
+ 
   
 ];
 
