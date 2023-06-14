@@ -52,18 +52,27 @@ ngOnInit(): void {
 }
 
 
-getPersonTasks(personId: number, taskType: string) {
-  this.taskService.getTasksByPersonAndType(personId, taskType)
-      .subscribe(tasks => this.selectedPerson ? this.selectedPerson.tasks = tasks : null);
-}
-
-
 onPersonSelected(personId: number) {
   console.log('onPersonSelected:', personId);
   this.selectedPersonService.setPersonId(personId.toString());
-  let selectedPersonId = this.selectedPersonService.getPersonId();
-  // then call getPersonTasks with the selected task type
-  this.getPersonTasks(Number(selectedPersonId), this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
+
+  // Fetch the selected person details
+  this.personService.getPerson(personId).subscribe(person => {
+    this.selectedPerson = person;
+    this.getPersonTasks(personId, this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
+  });
+}
+
+getPersonTasks(personId: number, taskType: string) {
+  this.taskService.getTasksByPersonAndType(personId, taskType)
+    .subscribe(tasks => {
+      if (this.selectedPerson) {
+        this.selectedPerson.tasks = tasks;
+        console.log('Fetched tasks for selected person:', this.selectedPerson);
+      } else {
+        console.error('selectedPerson is not set');
+      }
+    });
 }
 
 

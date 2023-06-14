@@ -25,8 +25,14 @@ export class TaskService {
   getTasksByPersonAndType(personId: number, taskType: string): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskType}`);
   }
+
   createTask(personId: number, taskType: string, task: Task): Observable<Task> {
+    if (!task.url?.startsWith('http://') && !task.url?.startsWith('https://')) {
+      task.url = 'https://' + task.url;
+    }
     return this.http.post<Task>(`${this.personService.personsUrl}/person/${personId}/tasks/${taskType}`, task);
   }
+  
+  
 }
 
