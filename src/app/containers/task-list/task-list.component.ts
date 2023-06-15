@@ -121,4 +121,11 @@ createTask() {
   getProgress(task: Task): number {
     return 0;
   }
+  deleteTask(personId: number, taskId: number): void {
+    this.taskService.deleteTask(personId, taskId).subscribe(() => {
+      this.tasks = this.tasks.filter((task) => task.id !== taskId);
+      console.log('Deleted task with id:', taskId);
+      
+    });
+  } 
 }
