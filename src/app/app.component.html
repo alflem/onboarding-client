@@ -7,11 +7,17 @@
     </button>
     
     <mat-form-field>
-      <mat-label>Pågående Onboarders</mat-label>
+      <mat-label><div *ngIf="selectedPerson">
+        <h2>Selected Person:</h2>
+        <p>Name: {{selectedPerson.name}}</p>
+        <p>Email: {{selectedPerson.email}}</p>
+    </div>
+    </mat-label>
       <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
         <mat-option *ngFor="let person of activePersons" [value]="person">
             {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}
         </mat-option>
+        
     </mat-select>    
     </mat-form-field>
     

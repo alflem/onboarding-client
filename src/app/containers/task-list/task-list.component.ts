@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 
+
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -38,7 +39,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private personService: PersonService,
     private selectedPersonService: SelectedPersonService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +68,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
+
+  
 
 filterTasksByTaskType(taskType: string) {
     if(this.personId) {

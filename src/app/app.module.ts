@@ -25,7 +25,7 @@ import { TaskFilterPipe } from './task-filter.pipe';
 import { AddPersonComponent } from './containers/add-person/add-person.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { AddTaskComponent } from './components/add-task/add-task.component';
+
 
 
 @NgModule({
@@ -33,8 +33,8 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     AppComponent,
     TaskListComponent,
     AddPersonComponent,
-    TaskFilterPipe,
-    AddTaskComponent
+    TaskFilterPipe
+
 
   ],
   imports: [
