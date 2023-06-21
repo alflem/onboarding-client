@@ -7,6 +7,9 @@ import { PersonService } from './person.service';
 import { TaskService } from './services/task.service';
 import { Person, Task } from './models/task.interface';
 import { SelectedPersonService } from './services/selectedperson.service';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 
 @Component({
@@ -33,7 +36,9 @@ export class AppComponent implements OnInit {
     public themeService: ThemeService,
     private personService: PersonService,
     private taskService: TaskService,
-    private selectedPersonService: SelectedPersonService
+    private selectedPersonService: SelectedPersonService,
+    private http: HttpClient,
+    private changeDetector: ChangeDetectorRef
     
   ) {
     this.router.events
@@ -98,18 +103,23 @@ getPersonTasks(personId: number, taskType: string) {
   }
 
   setPersonInactive(id: number): void {
-    const personIndex = this.persons.findIndex((person) => person.id === id);
-    if (personIndex !== -1) {
-      this.persons[personIndex].active = false;
-    }
+    this.personService.deactivatePerson(id).subscribe((updatedPerson) => {
+      const personIndex = this.persons.findIndex((person) => person.id === updatedPerson.id);
+      this.persons[personIndex] = updatedPerson;
+      this.personService.refreshActivePersons();
+      this.changeDetector.detectChanges();  // manually trigger change detection
+    });
   }
-
+  
   setPersonActive(id: number): void {
-    const personIndex = this.persons.findIndex((person) => person.id === id);
-    if (personIndex !== -1) {
-      this.persons[personIndex].active = true;
-    }
+    this.personService.activatePerson(id).subscribe((updatedPerson) => {
+      const personIndex = this.persons.findIndex((person) => person.id === updatedPerson.id);
+      this.persons[personIndex] = updatedPerson;
+      this.personService.refreshActivePersons();
+      this.changeDetector.detectChanges();  // manually trigger change detection
+    });
   }
+  
 
   showFlowerComponent() {
     return this.showFlower;
@@ -130,5 +140,8 @@ getPersonTasks(personId: number, taskType: string) {
   goToPersonTasks(personId: number): void {
     this.router.navigate(['/task-list', personId]);
   }
+
+
+  
   
 }

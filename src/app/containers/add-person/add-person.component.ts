@@ -4,8 +4,6 @@ import { PersonService } from 'src/app/person.service';
 import { Person } from '../../models/task.interface';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-add-person',
   templateUrl: './add-person.component.html',
@@ -15,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddPersonComponent implements OnInit {
   personForm: FormGroup;
   activePersons: Person[] = [];
-
+  allPersons: Person[] = [];
 
   constructor(private personService: PersonService, private fb: FormBuilder, private http: HttpClient) {
     this.personForm = this.fb.group({
@@ -25,7 +23,16 @@ export class AddPersonComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.personService.getAllPersons().subscribe({
+      next: (persons) => {
+        this.allPersons = persons;
+      },
+      error: (error) => {
+        console.error('Error fetching active persons:', error);
+      }
+    });
+  }
 
   submitForm(): void {
     const newPerson: Person = {
@@ -36,20 +43,57 @@ export class AddPersonComponent implements OnInit {
       tasks: [],
     };
 
-    this.personService.getAllPersons().subscribe((persons) => {
-      this.activePersons = persons;
-    }, error => {
-      console.error('Error fetching persons:', error);
+    this.personService.getAllPersons().subscribe({
+      next: (persons) => {
+        this.activePersons = persons;
+      },
+      error: (error) => {
+        console.error('Error fetching persons:', error);
+      }
     });
-    
 
-    this.personService.createPerson(newPerson).subscribe(
-      (response) => {
+    this.personService.createPerson(newPerson).subscribe({
+      next: (response) => {
         console.log('Person created', response);
       },
-      (error) => {
+      error: (error) => {
         console.log('Error creating person:', error);
       }
-    );
+    });
+  }
+
+  toggleActive(person: Person): void {
+    if (person.active) {
+      this.personService.deactivatePerson(person.id).subscribe({
+        next: (response) => {
+          console.log('Person deactivated', response);
+          this.reloadPersons();
+        },
+        error: (error) => {
+          console.log('Error deactivating person:', error);
+        }
+      });
+    } else {
+      this.personService.activatePerson(person.id).subscribe({
+        next: (response) => {
+          console.log('Person activated', response);
+          this.reloadPersons();
+        },
+        error: (error) => {
+          console.log('Error activating person:', error);
+        }
+      });
+    }
+  }
+
+  reloadPersons(): void {
+    this.personService.getAllPersons().subscribe({
+      next: (persons) => {
+        this.allPersons = persons;
+      },
+      error: (error) => {
+        console.error('Error fetching persons:', error);
+      }
+    });
   }
 }

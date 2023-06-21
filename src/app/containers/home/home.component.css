@@ -1,0 +1,174 @@
+/* home.comoponent.css */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap");
+
+:root {
+  --petal-size: 12rem;
+  --time: 2s;
+  --color1: rgb(255, 103, 111);
+  --color2: rgb(249, 220, 104);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*html,
+body {
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+}
+html {
+  font-size: max(18px, 2.5vw);
+}*/
+#body2 {
+  font-family: "Nunito", sans-serif;
+  background-color: white;
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+}
+#container {
+  display: flex;
+  position: relative;
+}
+section {
+  position: relative;
+  text-align: center;
+}
+h1 {
+  margin-bottom: calc(1rem + var(--petal-size));
+}
+#flower {
+  position: relative;
+  height: var(--petal-size);
+  width: var(--petal-size);
+  margin: auto;
+}
+#ball {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--petal-size);
+  width: var(--petal-size);
+  background: rgb(255, 204, 0);
+  border-radius: 50%;
+  z-index: 2;
+  transform: scale(1);
+  animation-name: ball_scale;
+}
+#petals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--petal-size);
+  height: var(--petal-size);
+  z-index: 1;
+}
+.petal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--petal-size);
+  height: var(--petal-size);
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background: var(--color1);
+
+  transform: scale(1) translate3d(var(--left), var(--top), 0) rotate(var(--deg));
+  /*
+  transition: transform var(--time);
+*/
+  animation-name: scale;
+}
+#ball,
+.petal {
+  box-shadow: 0 0 calc(var(--petal-size) * 0.5) calc(var(--petal-size) * 0.1)
+    rgba(255, 255, 255, 0.5) inset;
+  transform-origin: 50% 50%;
+  animation-duration: var(--time);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse; /* alternate; */
+  animation-fill-mode: both;
+}
+.petal:nth-of-type(1) {
+  /* top */
+  --top: calc(-1 * var(--petal-size) * 1.2);
+  --left: 0;
+  --deg: 135deg;
+}
+.petal:nth-of-type(2) {
+  /* right-top */
+  --top: calc(-1 * var(--petal-size) * 0.88);
+  --left: calc(var(--petal-size) * 0.86);
+  --deg: 180deg;
+}
+.petal:nth-of-type(3) {
+  /* right-center */
+  --top: 0;
+  --left: calc(var(--petal-size) * 1.2);
+  --deg: 225deg;
+}
+.petal:nth-of-type(4) {
+  /* right-bottom */
+  --top: calc(var(--petal-size) * 0.88);
+  --left: calc(var(--petal-size) * 0.86);
+  --deg: 270deg;
+}
+.petal:nth-of-type(5) {
+  /* bottom */
+  --top: calc(var(--petal-size) * 1.2);
+  --left: 0;
+  --deg: 315deg;
+}
+.petal:nth-of-type(6) {
+  /* left-bottom */
+  --top: calc(var(--petal-size) * 0.88);
+  --left: calc(-1 * var(--petal-size) * 0.86);
+  --deg: 0deg;
+}
+.petal:nth-of-type(7) {
+  /* left-center */
+  --top: 0;
+  --left: calc(-1 * var(--petal-size) * 1.2);
+  --deg: 45deg;
+}
+.petal:nth-of-type(8) {
+  /* left-top */
+  --top: calc(-1 * var(--petal-size) * 0.88);
+  --left: calc(-1 * var(--petal-size) * 0.86);
+  --deg: 90deg;
+}
+.petal:nth-of-type(odd) {
+  background: var(--color2);
+}
+
+.petal:hover{
+    opacity: 70%;
+}
+/*
+#ball:hover ~ #petals .petal {
+  transform: scale(0) translate3d(var(--left), var(--top), 0) rotate(var(--deg));
+}
+*/
+/* @keyframes scale {
+  0% {
+    transform: scale(0) translate3d(var(--left), var(--top), 0)
+      rotate(var(--deg));
+  }
+  100% {
+    transform: scale(1) translate3d(var(--left), var(--top), 0)
+      rotate(var(--deg));
+  }
+}
+@keyframes ball_scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+} */

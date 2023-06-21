@@ -1,4 +1,5 @@
 <!--app.component.html-->
+
 <div [class.darkTheme]="isDarkMode">
   <mat-toolbar color="primary">
     <span>Xlent Luleå</span>
@@ -8,14 +9,12 @@
     
     <mat-form-field>
       <mat-label><div *ngIf="selectedPerson">
-        <h2>Selected Person:</h2>
-        <p>Name: {{selectedPerson.name}}</p>
-        <p>Email: {{selectedPerson.email}}</p>
+        <p>Namn: {{selectedPerson.name}}</p>
     </div>
     </mat-label>
       <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
         <mat-option *ngFor="let person of activePersons" [value]="person">
-            {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}
+            {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }} {{ person.id }}
         </mat-option>
         
     </mat-select>    
@@ -40,7 +39,7 @@
         
         <button mat-raised-button color="primary" routerLink="/"><mat-icon>home</mat-icon></button>
         <!-- <button mat-raised-button color="primary" routerLink="/onboarding">Påbörja onboarding</button>-->
-        <button mat-raised-button color="secondary" routerLink="/add-person">Lägg till ny person</button>
+        <button mat-raised-button color="secondary" routerLink="/add-person">Hantera personer</button>
         <button mat-raised-button color="warn" routerLink="/task-list">
           Att göra-lista
         </button>

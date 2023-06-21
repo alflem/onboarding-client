@@ -15,7 +15,6 @@ import { TaskListComponent } from './containers/task-list/task-list.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,8 +22,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { TaskFilterPipe } from './task-filter.pipe';
 import { AddPersonComponent } from './containers/add-person/add-person.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { HomeComponent } from './containers/home/home.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -33,9 +35,8 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     TaskListComponent,
     AddPersonComponent,
-    TaskFilterPipe
-
-
+    TaskFilterPipe,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,15 +50,19 @@ import { MatInputModule } from '@angular/material/input';
     MatCheckboxModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule,
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatOptionModule
+    MatOptionModule,
+    FormsModule,
+    MatTooltipModule,
+    CommonModule
   ],
   providers: [
     { provide: Window, useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export class HomeModule { }

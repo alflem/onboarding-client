@@ -2,8 +2,9 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Person } from './models/task.interface';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -13,13 +14,20 @@ import { Person } from './models/task.interface';
   providedIn: 'root',
 })
 export class PersonService {
+  private activePersonsSubject = new BehaviorSubject<Person[]>([]);
+  public activePersons$ = this.activePersonsSubject.asObservable();
   
   public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
   
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.refreshActivePersons();
+  }
 
- 
+
+  refreshActivePersons(): void {
+    this.getActivePersons().subscribe();
+  }
 
   
 getAllPersons(): Observable<Person[]> {
@@ -37,7 +45,8 @@ getPerson(id: number): Observable<Person> {
 
   getActivePersons(): Observable<Person[]> {
     const url = `${this.personsUrl}/activePersons`;
-    return this.http.get<Person[]>(url);
+    return this.http.get<Person[]>(url)
+      .pipe(tap((persons) => this.activePersonsSubject.next(persons)));
   }
 
   createPerson(person: Person): Observable<Person> {
@@ -59,5 +68,13 @@ getPerson(id: number): Observable<Person> {
   removeTask(personId: number, taskId: number): Observable<Person> {
     const url = `${this.personsUrl}/${personId}/tasks/${taskId}`;
     return this.http.delete<Person>(url);
+  }
+
+  deactivatePerson(personId: number): Observable<any> {
+    return this.http.put(`${this.personsUrl}/person/${personId}/deactivate`, {});
+  }
+  
+  activatePerson(personId: number): Observable<any> {
+    return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
   }
 }
