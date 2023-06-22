@@ -6,10 +6,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Person } from './models/task.interface';
 import { tap } from 'rxjs/operators';
 
-
-
-
-
 @Injectable({
   providedIn: 'root',
 })

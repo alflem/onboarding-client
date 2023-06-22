@@ -24,5 +24,13 @@ export enum TaskType {
     active: boolean;
   
   }
+
+  export interface TaskEmail {
+    to: string;
+    title: string;
+    description: string;
+    url: string;
+    additionalInfo: string;
+  }
   
   
