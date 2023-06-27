@@ -18,7 +18,7 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'onboarding-client';
+  title = 'onboarding-xlu';
   showFlower = true;
   isDarkMode = false;
   persons: Person[] = [];
@@ -64,7 +64,7 @@ onPersonSelected(personId: number) {
   // Fetch the selected person details
   this.personService.getPerson(personId).subscribe(person => {
     this.selectedPerson = person;
-    this.getPersonTasks(personId, this.selectedTaskType ? this.selectedTaskType : 'BEFORE_START');
+    this.getPersonTasks(personId, this.selectedTaskType ? this.selectedTaskType : 'BLOMBLAD_1');
   });
 }
 

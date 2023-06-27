@@ -10,6 +10,8 @@ import { SelectedPersonService } from 'src/app/services/selectedperson.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -40,6 +42,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private personService: PersonService,
     private selectedPersonService: SelectedPersonService,
     private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +72,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
+  
   
 
 filterTasksByTaskType(taskType: string) {
@@ -125,10 +129,24 @@ createTask() {
     return 0;
   }
   deleteTask(personId: number, taskId: number): void {
-    this.taskService.deleteTask(personId, taskId).subscribe(() => {
-      this.tasks = this.tasks.filter((task) => task.id !== taskId);
-      console.log('Deleted task with id:', taskId);
-      
+    const dialogData = new ConfirmDialogModel(
+      "Confirm Delete",
+      "Are you sure you want to delete this task?"
+    );
+  
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: dialogData
     });
-  } 
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        // If user clicked Yes, proceed with deletion
+        this.taskService.deleteTask(personId, taskId).subscribe(() => {
+          this.tasks = this.tasks.filter((task) => task.id !== taskId);
+          console.log('Deleted task with id:', taskId);
+        });
+      }
+    });
+  }
 }

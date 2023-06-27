@@ -11,9 +11,18 @@ export interface Task {
 }   
 
 export enum TaskType {
-    BEFORE_START,
-    AFTER_START_BUDDY,
+    BEFORE_START, 
+    AFTER_START_BUDDY, 
     AFTER_START_RECRUIT,
+    //
+    BLOMBLAD_1,
+    BLOMBLAD_2,
+    BLOMBLAD_3,
+    BLOMBLAD_4,
+    BLOMBLAD_5,
+    BLOMBLAD_6,
+    BLOMBLAD_7,
+    BLOMBLAD_8
   }
 
   export interface Person {

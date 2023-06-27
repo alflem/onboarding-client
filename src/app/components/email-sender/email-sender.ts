@@ -1,12 +1,12 @@
 //email.component.ts
 import { Component, OnInit } from '@angular/core';
-import { EmailService } from '../services/email.service';
-import { Task } from '../models/task.interface';
+import { EmailService } from '../../services/email.service';
+import { Task } from '../../models/task.interface';
 
 @Component({
-  selector: 'app-mail',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.css']
+  selector: 'app-email',
+  templateUrl: './email-sender.html',
+  styleUrls: ['./email-sender.css']
 })
 export class MailComponent implements OnInit {
   task: Task = {

@@ -24,8 +24,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles": [          
               "/Users/marcussundbom/Downloads/onboarding-client/src/styles/testtheme.scss",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
