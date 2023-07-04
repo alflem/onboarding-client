@@ -9,8 +9,6 @@ import { AdminPageComponent } from './containers/admin-page/admin-page.component
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'admin-page', component: AdminPageComponent }
- 
-  
 ];
 
 

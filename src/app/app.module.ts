@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPageComponent } from './containers/admin-page/admin-page.component';
+import { EmailComponent } from './email/email.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AdminPageComponent } from './containers/admin-page/admin-page.component
     TaskFilterPipe,
     HomeComponent,
     ConfirmDialogComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    EmailComponent
   ],
   imports: [
     BrowserModule,

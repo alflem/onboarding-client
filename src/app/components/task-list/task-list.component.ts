@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivationEnd } from '@angular/router';
 import { PersonService } from 'src/app/person.service';
 import { Person } from 'src/app/models/task.interface';
 import { SelectedPersonService } from 'src/app/services/selectedperson.service';
@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -46,6 +47,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+
+
     this.selectedPersonService.getPersonId().pipe(takeUntil(this.ngUnsubscribe)).subscribe(personId => {
       this.personId = personId;
       console.log('PersonId:', this.personId);
@@ -130,8 +133,8 @@ createTask() {
   }
   deleteTask(personId: number, taskId: number): void {
     const dialogData = new ConfirmDialogModel(
-      "Confirm Delete",
-      "Are you sure you want to delete this task?"
+      "Bekräfta borttagning",
+      "Är du säker?"
     );
   
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

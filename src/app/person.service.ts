@@ -13,8 +13,7 @@ export class PersonService {
   private activePersonsSubject = new BehaviorSubject<Person[]>([]);
   public activePersons$ = this.activePersonsSubject.asObservable();
   
-  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`; // Replace with your Spring Boot server address and port
-  
+  public personsUrl = `${window.location.protocol}//${window.location.hostname}:8081`;   
 
   constructor(private http: HttpClient) {
     this.refreshActivePersons();
