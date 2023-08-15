@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmDialogComponent } from './confirmation-dialog.component';
+import { TaskListPopupComponent } from './task-list-popup.component';
 
-describe('ConfirmDialogComponent', () => {
-  let component: ConfirmDialogComponent;
-  let fixture: ComponentFixture<ConfirmDialogComponent>;
+describe('TaskListPopupComponent', () => {
+  let component: TaskListPopupComponent;
+  let fixture: ComponentFixture<TaskListPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmDialogComponent ]
+      declarations: [ TaskListPopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConfirmDialogComponent);
+    fixture = TestBed.createComponent(TaskListPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

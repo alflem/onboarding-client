@@ -1,4 +1,5 @@
-<!-- add-person.component.html -->
+<!-- manage-persons.component.html -->
+
 <h2>Lägg till person</h2>
 <form [formGroup]="personForm" (ngSubmit)="submitForm()">
   <mat-form-field>
@@ -30,6 +31,7 @@
     <mat-checkbox [checked]="person.active" (change)="toggleActive(person)">
       {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
     </mat-checkbox>
+ 
   </div>
 </form>
   

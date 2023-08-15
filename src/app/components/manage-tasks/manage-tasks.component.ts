@@ -1,5 +1,5 @@
 //task-list.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/models/task.interface';
 import { TaskType } from 'src/app/models/task.interface';
@@ -11,24 +11,25 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss'],
+  selector: 'app-manage-tasks',
+  templateUrl: './manage-tasks.component.html',
+  styleUrls: ['./manage-tasks.component.scss'],
 })
-export class TaskListComponent implements OnInit, OnDestroy {
+export class ManageTasksCompoment implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
   TaskType = TaskType;
   selectAll: boolean = false;
-  tasks: Task[] = [];
+  @Input() tasks: Task[] = [];
   allTasks: Task[] = [];
-  selectedTaskType: string = '';
+  @Input() selectedTaskType: string = '';
   person: Person | undefined;
   personId: string | undefined;
+  
 
   taskTypes = Object.values(TaskType).filter(
     (value) => typeof value === 'string'
@@ -44,7 +45,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private selectedPersonService: SelectedPersonService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
-  ) {}
+  ) { 
+    this.newTask = { title: '', description: '', taskType: this.selectedTaskType, completed: false, active: true, url: '' };
+  }
 
   ngOnInit(): void {
 
@@ -127,6 +130,8 @@ createTask() {
     this.selectAll = false;
     this.tasks.forEach((task) => {});
   }
+
+
 
   getProgress(task: Task): number {
     return 0;

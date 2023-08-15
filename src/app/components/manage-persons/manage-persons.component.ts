@@ -3,19 +3,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from 'src/app/person.service';
 import { Person } from '../../models/task.interface';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+
+
 
 @Component({
-  selector: 'app-add-person',
-  templateUrl: './add-person.component.html',
-  styleUrls: ['./add-person.component.scss']
+  selector: 'app-manage-persons',
+  templateUrl: './manage-persons.component.html',
+  styleUrls: ['./manage-persons.component.scss']
 })
 
-export class AddPersonComponent implements OnInit {
+export class ManagePersonsComponent implements OnInit {
   personForm: FormGroup;
   activePersons: Person[] = [];
   allPersons: Person[] = [];
 
-  constructor(private personService: PersonService, private fb: FormBuilder, private http: HttpClient) {
+  constructor(private personService: PersonService, private fb: FormBuilder, private http: HttpClient, public dialog: MatDialog) {
     this.personForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -61,6 +65,12 @@ export class AddPersonComponent implements OnInit {
       }
     });
   }
+ 
+
+  
+
+
+  
 
   toggleActive(person: Person): void {
     if (person.active) {
@@ -96,4 +106,34 @@ export class AddPersonComponent implements OnInit {
       }
     });
   }
-}
+
+
+  openDeleteConfirmationDialog(personId: number): void {
+    const dialogData = new ConfirmDialogModel('Delete Person', 'Are you sure you want to delete this person?');
+  
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: dialogData,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletePerson(personId); // Call the deletePerson method after confirmation
+      }
+    });
+  }
+  
+  deletePerson(personId: number): void {
+    this.personService.deletePerson(personId).subscribe(
+      () => {
+        // Remove the deleted person from the allPersons array
+        this.allPersons = this.allPersons.filter(person => person.id !== personId);
+        console.log('Deleted person with id:', personId);
+      },
+      error => {
+        console.error('Error deleting person:', error);
+      }
+    );
+  }
+}  
+

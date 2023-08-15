@@ -1,7 +1,7 @@
 <!--task-list.component.html-->
 <div class="task-list">
   <div class="header">
-    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox>
+    <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAll ? checkAll() : uncheckAll()" labelPosition="after"></mat-checkbox> -->
 
 
 
@@ -35,9 +35,9 @@
       <button type="submit">Add task</button>
     </form>
   </div>
-  <!--  <mat-progress-bar class="total-progress" mode="determinate" [value]="getTotalProgress()"></mat-progress-bar> -->
   </div>
 
+<!-- Show tasks-->
   <ng-container *ngIf="selectedPerson">
     <ng-container *ngFor="let task of selectedPerson.tasks">
       <ng-container *ngIf="task.taskType === selectedTaskType">
@@ -51,16 +51,10 @@
               <ng-template #noLink>{{ task.title }}</ng-template>
               Beskrivning: {{ task.description }}
               <mat-icon (click)="deleteTask(selectedPerson.id, task.id)">delete_forever</mat-icon>
-              <app-email></app-email>
-
-              
-              
-
+              <!-- <app-email></app-email> Fungerar ej-->
             </h3>
-            <mat-progress-bar mode="determinate" [value]="getProgress(task)"></mat-progress-bar>
           </div>
         </div>
-      
       </ng-container>
     </ng-container>
   </ng-container>

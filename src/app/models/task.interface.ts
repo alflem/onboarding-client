@@ -14,7 +14,6 @@ export enum TaskType {
     BEFORE_START, 
     AFTER_START_BUDDY, 
     AFTER_START_RECRUIT,
-    //
     BLOMBLAD_1,
     BLOMBLAD_2,
     BLOMBLAD_3,

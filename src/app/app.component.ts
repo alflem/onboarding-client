@@ -9,7 +9,8 @@ import { Person, Task } from './models/task.interface';
 import { SelectedPersonService } from './services/selectedperson.service';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -25,11 +26,8 @@ export class AppComponent implements OnInit {
   newPerson: Person = { id: 0, name: '', email: '', tasks: [], active: true };
   activePersons: Person[] = []
   selectedPerson: Person | null = null;
-  selectedTaskType: string | null = null;
-  tasks: Task[] = [];
-
- 
-
+  selectedTaskType = '';
+  tasks = [];
 
   constructor(
     private router: Router,
@@ -38,7 +36,8 @@ export class AppComponent implements OnInit {
     private taskService: TaskService,
     private selectedPersonService: SelectedPersonService,
     private http: HttpClient,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    public dialog: MatDialog
     
   ) {
     this.router.events
@@ -46,6 +45,17 @@ export class AppComponent implements OnInit {
       .subscribe((event: any) => {
         this.showFlower = event.url === '/' || event.url === '';
       });
+  }
+
+  openTaskListPopup(): void {
+    const dialogRef = this.dialog.open(TaskListPopupComponent, {
+      width: '500px',
+      data: { tasks: this.tasks, taskType: this.selectedTaskType }, // Pass both tasks and taskType to the popup
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // Handle any actions after the popup is closed if needed
+    });
   }
 
  // In your Angular component

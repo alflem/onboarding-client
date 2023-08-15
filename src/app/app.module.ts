@@ -10,8 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-import { TaskListComponent } from './components/task-list/task-list.component';
-
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -21,27 +19,32 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { TaskFilterPipe } from './task-filter.pipe';
-import { AddPersonComponent } from './components/add-person/add-person.component';
+import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HomeComponent } from './containers/home-flower/home.component';
 import { CommonModule } from '@angular/common';
-import { ConfirmDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPageComponent } from './containers/admin-page/admin-page.component';
-import { EmailComponent } from './email/email.component';
+import { EmailComponent } from './components/email/email.component';
+import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
+import { ManageTasksCompoment } from './components/manage-tasks/manage-tasks.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskListComponent,
-    AddPersonComponent,
+    ManagePersonsComponent,
     TaskFilterPipe,
     HomeComponent,
     ConfirmDialogComponent,
     AdminPageComponent,
-    EmailComponent
+    EmailComponent,
+    TaskListPopupComponent,
+    ManageTasksCompoment
+
+  
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,8 @@ import { EmailComponent } from './email/email.component';
   ],
   providers: [
     { provide: Window, useValue: window }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [TaskListPopupComponent]
 })
 export class AppModule { }

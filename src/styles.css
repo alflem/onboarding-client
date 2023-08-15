@@ -11,3 +11,5 @@ body { margin: 0; font-family: Roboto, "Helveetica Neu", sans-serif; }
     --color1: rgb(255, 103, 111);
     --color2: rgb(249, 220, 104);
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

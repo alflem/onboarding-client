@@ -72,4 +72,8 @@ getPerson(id: number): Observable<Person> {
   activatePerson(personId: number): Observable<any> {
     return this.http.put(`${this.personsUrl}/person/${personId}/activate`, {});
   }
+
+  deletePerson(personId: number): Observable<any> {
+    return this.http.delete(`${this.personsUrl}/person/${personId}`);
+  }
 }
