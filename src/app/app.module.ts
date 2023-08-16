@@ -19,7 +19,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { TaskFilterPipe } from './task-filter.pipe';
-import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -30,19 +29,23 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPageComponent } from './containers/admin-page/admin-page.component';
 import { EmailComponent } from './components/email/email.component';
 import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
-import { ManageTasksCompoment } from './components/manage-tasks/manage-tasks.component'
+import { ManageTasksComponent } from './components/manage-tasks/manage-tasks.component';
+import { LoginComponent } from './components/login/login.component'
+import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
+import { CommunicationService } from './services/CommunicationService';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManagePersonsComponent,
     TaskFilterPipe,
     HomeComponent,
     ConfirmDialogComponent,
     AdminPageComponent,
     EmailComponent,
     TaskListPopupComponent,
-    ManageTasksCompoment
+    ManageTasksComponent,
+    LoginComponent,
+    ManagePersonsComponent
 
   
   ],
@@ -68,7 +71,7 @@ import { ManageTasksCompoment } from './components/manage-tasks/manage-tasks.com
     MatDialogModule,
     CommonModule
   ],
-  providers: [
+  providers: [CommunicationService, ManageTasksComponent,
     { provide: Window, useValue: window }],
   bootstrap: [AppComponent],
 

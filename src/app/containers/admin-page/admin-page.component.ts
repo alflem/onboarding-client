@@ -1,5 +1,5 @@
-import { Component, NgModule } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
+import { Component } from '@angular/core';
+
 
 
 @Component({

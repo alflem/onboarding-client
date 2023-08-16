@@ -5,6 +5,7 @@ import { Person } from '../../models/task.interface';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { CommunicationService } from 'src/app/services/CommunicationService';
 
 
 
@@ -39,14 +40,20 @@ export class ManagePersonsComponent implements OnInit {
   }
 
   submitForm(): void {
+    const nameValue = this.personForm.get('name')!.value;
+    if (!nameValue) {
+      console.log('Name cannot be null. Cannot create person.');
+      return; // Exit the function if name is null
+    }
+  
     const newPerson: Person = {
       id: 0,
-      name: this.personForm.get('name')?.value,
-      email: this.personForm.get('email')?.value,
-      active: this.personForm.get('active')?.value,
+      name: nameValue,
+      email: this.personForm.get('email')!.value,
+      active: this.personForm.get('active')!.value,
       tasks: [],
     };
-
+  
     this.personService.getAllPersons().subscribe({
       next: (persons) => {
         this.activePersons = persons;
@@ -55,8 +62,8 @@ export class ManagePersonsComponent implements OnInit {
         console.error('Error fetching persons:', error);
       }
     });
-
-    this.personService.createPerson(newPerson).subscribe({
+  
+    this.personService.createPerson(newPerson).subscribe({ 
       next: (response) => {
         console.log('Person created', response);
       },
@@ -65,13 +72,8 @@ export class ManagePersonsComponent implements OnInit {
       }
     });
   }
+  
  
-
-  
-
-
-  
-
   toggleActive(person: Person): void {
     if (person.active) {
       this.personService.deactivatePerson(person.id).subscribe({
@@ -123,17 +125,18 @@ export class ManagePersonsComponent implements OnInit {
     });
   }
   
-  deletePerson(personId: number): void {
-    this.personService.deletePerson(personId).subscribe(
-      () => {
-        // Remove the deleted person from the allPersons array
-        this.allPersons = this.allPersons.filter(person => person.id !== personId);
-        console.log('Deleted person with id:', personId);
-      },
-      error => {
-        console.error('Error deleting person:', error);
-      }
-    );
-  }
-}  
+deletePerson(personId: number): void {
+  this.personService.deletePerson(personId).subscribe(
+    () => {
+      // Remove the deleted person from the allPersons array
+      this.allPersons = this.allPersons.filter(person => person.id !== personId);
+      console.log('Deleted person with id:', personId);
+    },
+    error => {
+      console.error('Error deleting person:', error);
+    }
+  );
 
+
+}  
+}

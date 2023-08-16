@@ -25,13 +25,13 @@
   </mat-form-field>
   
   <button mat-raised-button color="primary" type="submit" [disabled]="personForm.invalid"> Lägg till</button>
-  
+</form>
   <h2>Inaktivera/Aktivera Personer</h2>
   <div *ngFor="let person of allPersons">
     <mat-checkbox [checked]="person.active" (change)="toggleActive(person)">
       {{ person.name }} ({{ person.active ? 'Aktiv' : 'Inaktiv' }})
     </mat-checkbox>
- 
+    <button mat-button color="warn" (click)="openDeleteConfirmationDialog(person.id)"><mat-icon>delete</mat-icon></button> 
   </div>
-</form>
+
   

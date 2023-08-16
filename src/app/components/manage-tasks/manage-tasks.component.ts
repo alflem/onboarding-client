@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './manage-tasks.component.html',
   styleUrls: ['./manage-tasks.component.scss'],
 })
-export class ManageTasksCompoment implements OnInit, OnDestroy {
+export class ManageTasksComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
   TaskType = TaskType;
   selectAll: boolean = false;

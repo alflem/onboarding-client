@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CommunicationService } from './services/CommunicationService';
 
 
 @Component({
@@ -37,9 +38,14 @@ export class AppComponent implements OnInit {
     private selectedPersonService: SelectedPersonService,
     private http: HttpClient,
     private changeDetector: ChangeDetectorRef,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private communicationService: CommunicationService
     
   ) {
+
+    communicationService.changeEmitted$.subscribe(data => {
+      // here fetch data from the session storage 
+    });
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -147,11 +153,6 @@ getPersonTasks(personId: number, taskType: string) {
       this.persons[personIndex] = updatedPerson;
     });
   }
-  goToPersonTasks(personId: number): void {
-    this.router.navigate(['/task-list', personId]);
-  }
 
-
-  
   
 }
