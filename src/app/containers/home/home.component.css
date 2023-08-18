@@ -154,6 +154,21 @@ h1 {
   background-size: 80%;
   background-image: url("data.jpg");
 }
+
+.info-box {
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center; /* Centrera texten horisontellt */
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /*
 #ball:hover ~ #petals .petal {
   transform: scale(0) translate3d(var(--left), var(--top), 0) rotate(var(--deg));

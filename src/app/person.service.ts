@@ -74,6 +74,6 @@ getPerson(id: number): Observable<Person> {
   }
 
   deletePerson(personId: number): Observable<any> {
-    return this.http.delete(`${this.personsUrl}/person/${personId}/delete`, {});
+    return this.http.delete(`${this.personsUrl}/person/${personId}`, {});
   }
 }

@@ -22,7 +22,7 @@ import { TaskFilterPipe } from './task-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { HomeComponent } from './containers/home-flower/home.component';
+import { HomeComponent } from   './containers/home/home.component';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,7 +30,7 @@ import { AdminPageComponent } from './containers/admin-page/admin-page.component
 import { EmailComponent } from './components/email/email.component';
 import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { ManageTasksComponent } from './components/manage-tasks/manage-tasks.component';
-import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/communication-test/communication-test.component';
 import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { CommunicationService } from './services/CommunicationService';
 
@@ -45,9 +45,7 @@ import { CommunicationService } from './services/CommunicationService';
     TaskListPopupComponent,
     ManageTasksComponent,
     LoginComponent,
-    ManagePersonsComponent
-
-  
+    ManagePersonsComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,12 +67,11 @@ import { CommunicationService } from './services/CommunicationService';
     FormsModule,
     MatTooltipModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
   ],
-  providers: [CommunicationService, ManageTasksComponent,
-    { provide: Window, useValue: window }],
+  providers: [CommunicationService, { provide: Window, useValue: window }],
   bootstrap: [AppComponent],
 
-  entryComponents: [TaskListPopupComponent]
+  entryComponents: [TaskListPopupComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { HomeComponent } from './containers/home-flower/home.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './containers/home/home.component';
 import { AdminPageComponent } from './containers/admin-page/admin-page.component';
 
 

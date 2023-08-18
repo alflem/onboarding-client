@@ -3,7 +3,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CommunicationService {
   private emitChangeSource = new Subject<any>();
 
