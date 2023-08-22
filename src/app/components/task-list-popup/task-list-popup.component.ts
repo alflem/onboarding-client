@@ -1,7 +1,7 @@
 
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Petal } from 'src/app/containers/home/home.component';
+import { Petal } from '../petal/petal.component';
 
 
 @Component({

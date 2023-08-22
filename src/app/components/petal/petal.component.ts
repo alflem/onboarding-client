@@ -1,9 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { Petal } from 'src/app/containers/home/home.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskListPopupComponent } from '../task-list-popup/task-list-popup.component';
 import { AppComponent } from 'src/app/app.component';
-import { WelcomePopupComponent } from '../welcome-popup/welcome-popup.component';
+import { Output, EventEmitter } from '@angular/core';
+
+export interface Petal {
+  imageAvatarUrl?: string;
+  title?: string;
+  subtitle?: string;
+  description: string;
+  imageUrl?: string;
+  urlNamn?: string;
+  url?: string;
+}
 
 @Component({
   selector: 'app-petal',
@@ -12,24 +21,77 @@ import { WelcomePopupComponent } from '../welcome-popup/welcome-popup.component'
       <!-- Basic petal visual -->
     </div>
   `,
+  templateUrl: './petal.component.html',
   styleUrls: ['./petal.component.css']
 })
 export class PetalComponent {
-  @Input() petal: Petal = { description: '', imageUrl: '', url: '' }; // Provide a default value
+  petals: Petal[] = [
+    {
+      imageAvatarUrl: 'https://www.w3schools.com/howto/img_avatar.png',
+      title: 'Anställning och admin',
+      subtitle: 'Veronica Andersson',
+      description: 'Vår VD är Veronica, det är hon som har koll på vad som behöver vara på plats i och med din anställningsstart',
+      imageUrl: 'https://www.w3schools.com/howto/img_avatar.png',
+      urlNamn: 'Maconomy',
+      url: 'https://me50653-iaccess.deltekfirst.com/oauth'
+    },
+    {
+      title: 'Blomblad 2',
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'data.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      title: 'Blomblad 3',
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      title: 'Blomblad 4',
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    {
+      description: 'Beskrivning för blomblad 2',
+      imageUrl: 'bild2.jpg',
+      url: 'http://www.url2.com'
+    },
+    
+  ];
+
+
+@Input() petal: Petal = { description: '', imageUrl: '', url: '' }; // Provide a default value  
+@Output() petalClicked: EventEmitter<Petal> = new EventEmitter();
+
+
+
 
   constructor(private dialog: MatDialog, private appComponent: AppComponent) {}
 
-  openTaskListDialog(): void {
-    // Stäng välkomstdialogen om den är öppen
-    if (this.appComponent.welcomeDialogRef) {
-        this.appComponent.welcomeDialogRef.close();
-    }
-
-    // Öppna TaskListPopupComponent som vanligt
+  openTaskListDialog(petal: Petal): void {
     this.dialog.open(TaskListPopupComponent, {
-        data: this.petal,
-        width: '600px',
-        height: '600px',
+      data: petal,
+      width: '600px',
     });
-}
+  }
+  onPetalClick(petal: Petal): void {
+    this.petalClicked.emit(petal);
+  }
 } 

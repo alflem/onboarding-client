@@ -1,41 +1,55 @@
 <!--app.component.html-->
 
 <div [class.darkTheme]="isDarkMode">
-  <mat-toolbar color="primary">
+  
    
     
-    <button mat-icon-button (click)="isDarkMode = !isDarkMode">
-      <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_3' }}</mat-icon>
-    </button>
-    
-    <mat-form-field>
-      <mat-label><div *ngIf="selectedPerson">
+    <!-- <button mat-icon-button (click)="isDarkMode = !isDarkMode"> -->
+      <!-- <mat-icon>{{ themeService.isDarkMode() ? 'brightness_7' : 'brightness_3' }}</mat-icon> -->
+    <!-- </button>
+     -->
+     <div class="personvaljar-lista">
+     <mat-form-field>
+<!-- Visar aktivt namn efter man valt i rullistan -->
+      <mat-label><div *ngIf="selectedPerson">  
         <p>{{selectedPerson.name}}</p>
     </div>
     </mat-label>
+
+<!-- Personvaljare -->
+
       <mat-select [(value)]="selectedPerson" (selectionChange)="onPersonSelected(selectedPerson!.id)">
+
         <mat-option *ngFor="let person of activePersons" [value]="person">
+
             {{ person.name }} {{ person.active ? 'Aktiv' : 'Inaktiv' }}  {{ person.id }}
+
         </mat-option>
-    </mat-select>    
+
+    </mat-select>  
+     
+
     </mat-form-field>
+    </div>
     
     
 
 
-    <button mat-raised-button color="primary" routerLink=""><mat-icon>home</mat-icon>HEM</button>
-        
-    <button mat-raised-button color="secondary" routerLink="/admin-page"><mat-icon>build</mat-icon>ADMIN</button>
+
+
+
+   
     
     
 
-  </mat-toolbar>
+
 
   <div class="container">
     <mat-card class="card">
       <mat-card-header>
        
-        
+        <button mat-raised-button color="secondary" routerLink=""><mat-icon>home</mat-icon></button>
+    <button mat-raised-button color="secondary" routerLink="/admin-page"><mat-icon>build</mat-icon></button>
         
       </mat-card-header>
       <mat-card-content>
