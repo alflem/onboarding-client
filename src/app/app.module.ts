@@ -33,6 +33,8 @@ import { ManageTasksComponent } from './components/manage-tasks/manage-tasks.com
 import { LoginComponent } from './components/communication-test/communication-test.component';
 import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { CommunicationService } from './services/CommunicationService';
+import { PetalComponent } from './components/petal/petal.component';
+import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { CommunicationService } from './services/CommunicationService';
     ManageTasksComponent,
     LoginComponent,
     ManagePersonsComponent,
+    PetalComponent,
+    WelcomePopupComponent,
   ],
   imports: [
     BrowserModule,

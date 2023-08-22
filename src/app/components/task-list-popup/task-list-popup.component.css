@@ -1,0 +1,19 @@
+.example-card {
+    max-width: 400px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .main-image{
+    margin:10px auto;
+    width: 100%;
+  }
+  
+  .example-header-image{
+    width: 100%; 
+    max-height: 600px;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  
+  

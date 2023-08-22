@@ -1,0 +1,9 @@
+.petal {
+    width: 50px; /* Set the width and height you want for the petal */
+    height: 50px;
+    border-radius: 50%; /* Create a circular shape */
+    background-color: pink; /* Set the background color you want */
+    margin: 5px; /* Add some spacing between petals */
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+  }
+  

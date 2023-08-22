@@ -5,7 +5,6 @@ import { Person } from '../../models/task.interface';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/components/confirm-dialog/confirm-dialog.component';
-import { CommunicationService } from 'src/app/services/CommunicationService';
 
 
 
@@ -20,7 +19,7 @@ export class ManagePersonsComponent implements OnInit {
   activePersons: Person[] = [];
   allPersons: Person[] = [];
 
-  constructor(private personService: PersonService, private fb: FormBuilder, private http: HttpClient, public dialog: MatDialog) {
+  constructor(private personService: PersonService, private fb: FormBuilder, public dialog: MatDialog) {
     this.personForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],

@@ -11,6 +11,9 @@ import { ChangeDetectorRef } from '@angular/core';
 import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommunicationService } from './services/CommunicationService';
+import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.component';
+
+
 
 @Component({
   selector: 'app-root',
@@ -27,8 +30,7 @@ export class AppComponent implements OnInit {
   selectedPerson: Person | null = null;
   selectedTaskType = '';
   tasks = [];
-  welcomeMessageVisible = true; 
-
+  welcomeDialogRef: any;
 
   constructor(
     private router: Router,
@@ -79,9 +81,20 @@ export class AppComponent implements OnInit {
         personId,
         this.selectedTaskType ? this.selectedTaskType : 'BLOMBLAD_1'
       );
+
+      // Öppna WelcomePopupComponent efter att den valda personens information hämtats
+      if(this.selectedPerson) {
+        this.welcomeDialogRef = this.dialog.open(WelcomePopupComponent, {
+            data: {
+                personName: this.selectedPerson.name
+            },
+            width: '400px'
+        });
+      }
       
     });
-  }
+}
+
   
 
   getPersonTasks(personId: number, taskType: string) {

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap");
-
+.mat-button, .mat-card-title, .mat-card-content {
+  font-family: Poppins, 'Poppins', sans-serif;
+}
 :root {
   --petal-size: 12rem;
   --time: 2s;
@@ -59,6 +61,7 @@ h1 {
   z-index: 2;
   transform: scale(1);
   animation-name: ball_scale;
+  font-family: 'Poppins', sans-serif;
 }
 #petals {
   position: absolute;
@@ -67,6 +70,7 @@ h1 {
   width: var(--petal-size);
   height: var(--petal-size);
   z-index: 1;
+  font-family: 'Poppins', sans-serif;
 }
 .petal {
   position: absolute;
@@ -76,6 +80,7 @@ h1 {
   height: var(--petal-size);
   border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
   background: var(--color1);
+  font-family: 'Poppins', sans-serif;
 
   transform: scale(1) translate3d(var(--left), var(--top), 0) rotate(var(--deg));
   /*
@@ -167,6 +172,13 @@ h1 {
   text-align: center; /* Centrera texten horisontellt */
   font-size: 16px;
   font-weight: bold;
+}
+#ball {
+    z-index: 1;
+}
+
+#petals {
+    z-index: 2;
 }
 
 /*

@@ -1,8 +1,21 @@
-<mat-card>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image">
+      <img matCardAvatar [src]="data.imageAvatarUrl" alt="Avatar">
+    </div>
+    <mat-card-title>{{ data.title }}</mat-card-title>
+    <mat-card-subtitle>{{ data.subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image class="main-image" [src]="data.imageUrl" alt="Bild">
   <mat-card-content>
-    <h2>{{ data.title }}</h2>
-    <p>{{ data.description }}</p>
-    <img [src]="data.imageUrl" alt="Bild för {{ data.title }}" />
-    <a *ngIf="data.url" [href]="data.url" target="_blank">{{ data.url }}</a>
+    <p>
+      {{ data.description }}
+      <a [href]="data.url" target="_blank">{{ data.urlNamn }}</a>
+    </p>
   </mat-card-content>
+  <mat-card-actions>
+    <a href="https://xlent.sharepoint.com/sites/XCG" target="_blank">
+      <button mat-button>Länk till intranät</button>
+    </a>
+  </mat-card-actions>
 </mat-card>
