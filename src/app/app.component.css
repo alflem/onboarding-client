@@ -17,19 +17,25 @@
 }
 
 .personvaljar-lista {
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    
-   
-  }
+  position: fixed;
+  top: 0;
+  left: 0; /* Om du vill att den ska starta från vänstra sidan av skärmen */
+  right: 0; /* För att den ska sträcka sig till höger sida av skärmen */
+  z-index: 1000; /* Högt z-index så att den alltid ligger ovanpå andra element */
+  background-color: #fff; /* Lägg till en bakgrundsfärg för att säkerställa att innehållet under inte syns igenom */
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+  
 
   #hem-knapp {
 
   
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 100px;
+    padding: 5px;
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
@@ -46,7 +52,7 @@
   #admin-knapp {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
     text-align: center;
     font-size: 16px;
@@ -59,5 +65,7 @@
   #admin-knapp:hover {
     opacity: 60%;
   }
-
+  router-outlet {
+    margin-top: 100px; /* Eller hur mycket höjd din header har, plus lite extra marginal. */
+}
 

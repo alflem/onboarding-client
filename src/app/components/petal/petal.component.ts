@@ -36,15 +36,19 @@ export class PetalComponent {
       url: 'https://me50653-iaccess.deltekfirst.com/oauth'
     },
     {
+      imageAvatarUrl: 'https://th.bing.com/th/id/OIG.2cFXsriBPnvyLfdE5jag?pid=ImgGn',
       title: 'Blomblad 2',
       description: 'Beskrivning för blomblad 2',
-      imageUrl: 'data.jpg',
+      imageUrl: 'https://th.bing.com/th/id/OIG.2cFXsriBPnvyLfdE5jag?pid=ImgGn',
+      urlNamn: 'url2',
       url: 'http://www.url2.com'
     },
     {
+      imageAvatarUrl: 'data.jpg', 
       title: 'Blomblad 3',
       description: 'Beskrivning för blomblad 2',
-      imageUrl: 'bild2.jpg',
+      imageUrl: 'data.jpg',
+      urlNamn: 'Startklar',
       url: 'http://www.url2.com'
     },
     {

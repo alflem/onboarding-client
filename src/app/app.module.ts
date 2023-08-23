@@ -28,7 +28,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPageComponent } from './containers/admin-page/admin-page.component';
 import { EmailComponent } from './components/email/email.component';
-import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { ManageTasksComponent } from './components/manage-tasks/manage-tasks.component';
 import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { CommunicationService } from './services/CommunicationService';
@@ -50,7 +49,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     PetalComponent,
     WelcomePopupComponent,
     ChoosePersonComponent,
-    TaskListPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +76,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   providers: [CommunicationService, { provide: Window, useValue: window }],
   bootstrap: [AppComponent],
 
-  entryComponents: [TaskListPopupComponent],
+  entryComponents: [],
 })
 export class AppModule {}

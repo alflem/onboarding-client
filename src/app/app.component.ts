@@ -8,7 +8,6 @@ import { TaskService } from './services/task.service';
 import { Person } from './models/task.interface';
 import { SelectedPersonService } from './services/selectedperson.service';
 import { ChangeDetectorRef } from '@angular/core';
-import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommunicationService } from './services/CommunicationService';
 import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.component';
@@ -54,16 +53,16 @@ export class AppComponent implements OnInit {
       });
   }
 
-  openTaskListPopup(): void {
-    const dialogRef = this.dialog.open(TaskListPopupComponent, {
-      width: '500px',
-      data: { tasks: this.tasks, taskType: this.selectedTaskType }, // Pass both tasks and taskType to the popup
-    });
+  // openTaskListPopup(): void {
+  //   const dialogRef = this.dialog.open(TaskListPopupComponent, {
+  //     width: '500px',
+  //     data: { tasks: this.tasks, taskType: this.selectedTaskType }, // Pass both tasks and taskType to the popup
+  //   });
 
-    dialogRef.afterClosed().subscribe(() => {
-      // Handle any actions after the popup is closed if needed
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(() => {
+  //     // Handle any actions after the popup is closed if needed
+  //   });
+  // }
 
   // In your Angular component
   ngOnInit(): void {

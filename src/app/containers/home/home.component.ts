@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskListPopupComponent } from '../../components/task-list-popup/task-list-popup.component';
 import { AppComponent } from 'src/app/app.component';
 
 

@@ -28,7 +28,7 @@ module.exports = function(config) {
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
     },
-
+ 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
