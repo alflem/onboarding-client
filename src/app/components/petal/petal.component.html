@@ -1,17 +1,47 @@
-<div id="body2">
-    <div id="container">
-      <section>
-        <div id='flower'>
-          <div id='ball'></div>
-          <div id="petals">
-            <div class="petal" *ngFor="let petal of petals" (click)="openTaskListDialog(petal)">
-            </div>
-          </div>
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+  
+  <!-- Sidopanelens innehåll -->
+  <mat-drawer #drawer mode="over">
+    <mat-card *ngIf="selectedPetal" class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+          <img matCardAvatar [src]="selectedPetal.imageAvatarUrl" alt="Avatar">
         </div>
-      </section>
+        <mat-card-title>{{ selectedPetal.title }}</mat-card-title>
+        <mat-card-subtitle>{{ selectedPetal.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="main-image" [src]="selectedPetal.imageUrl" alt="Bild">
+      <mat-card-content>
+        <p>
+          {{ selectedPetal.description }}
+          <a [href]="selectedPetal.url" target="_blank">{{ selectedPetal.urlNamn }}</a>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a href="https://xlent.sharepoint.com/sites/XCG" target="_blank">
+          <button mat-button>Länk till intranät</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-drawer>
+
+  <!-- Huvudinnehållet -->
+  <mat-drawer-content>
+    <div id="body2">
+      <div id="blomma">
+        <div id="container">
+          <section>
+            <div id='flower'>
+              <div id='ball'></div>
+              <div id="petals">
+                <div class="petal" *ngFor="let petal of petals" (click)="onPetalClick(petal)">
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  
-  
-  
+    <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+  </mat-drawer-content>
+</mat-drawer-container>

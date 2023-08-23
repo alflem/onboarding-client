@@ -19,9 +19,45 @@
 .personvaljar-lista {
     padding-top: 15px;
     padding-left: 15px;
-    border: solid;
+    padding-right: 15px;
+    
+   
   }
 
+  #hem-knapp {
 
+  
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 100px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    margin-left: 20px;
+    margin-bottom: 22px;
+  }
+
+  #hem-knapp:hover {
+    opacity: 60%;
+  }
+
+  #admin-knapp {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 7px;
+    margin-bottom: 22px;
+    min-width: none;
+    
+  }
+  #admin-knapp:hover {
+    opacity: 60%;
+  }
 
 

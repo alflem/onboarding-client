@@ -1,8 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { TaskListPopupComponent } from '../task-list-popup/task-list-popup.component';
-import { AppComponent } from 'src/app/app.component';
-import { Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawer } from '@angular/material/sidenav';
 
 export interface Petal {
   imageAvatarUrl?: string;
@@ -25,6 +23,8 @@ export interface Petal {
   styleUrls: ['./petal.component.css']
 })
 export class PetalComponent {
+  @ViewChild('drawer') sidenav!: MatDrawer;
+  selectedPetal: Petal | null = null;
   petals: Petal[] = [
     {
       imageAvatarUrl: 'https://www.w3schools.com/howto/img_avatar.png',
@@ -83,15 +83,13 @@ export class PetalComponent {
 
 
 
-  constructor(private dialog: MatDialog, private appComponent: AppComponent) {}
+  constructor() {}
 
-  openTaskListDialog(petal: Petal): void {
-    this.dialog.open(TaskListPopupComponent, {
-      data: petal,
-      width: '600px',
-    });
+onPetalClick(petal: Petal) {
+  this.selectedPetal = petal;
+
+  if (!this.sidenav.opened) {
+    this.sidenav.open();
   }
-  onPetalClick(petal: Petal): void {
-    this.petalClicked.emit(petal);
-  }
-} 
+}
+}

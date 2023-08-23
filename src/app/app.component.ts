@@ -15,6 +15,7 @@ import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
     private selectedPersonService: SelectedPersonService,
     private changeDetector: ChangeDetectorRef,
     public dialog: MatDialog,
-    private communicationService: CommunicationService
+    private communicationService: CommunicationService,
+   
   ) {
     communicationService.changeEmitted$.subscribe((data) => {
       // here fetch data from the session storage

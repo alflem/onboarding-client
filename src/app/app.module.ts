@@ -30,11 +30,12 @@ import { AdminPageComponent } from './containers/admin-page/admin-page.component
 import { EmailComponent } from './components/email/email.component';
 import { TaskListPopupComponent } from './components/task-list-popup/task-list-popup.component';
 import { ManageTasksComponent } from './components/manage-tasks/manage-tasks.component';
-import { LoginComponent } from './components/communication-test/communication-test.component';
 import { ManagePersonsComponent } from './components/manage-persons/manage-persons.component';
 import { CommunicationService } from './services/CommunicationService';
 import { PetalComponent } from './components/petal/petal.component';
 import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.component';
+import { ChoosePersonComponent } from './components/choose-person/choose-person.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,12 @@ import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.
     ConfirmDialogComponent,
     AdminPageComponent,
     EmailComponent,
-    TaskListPopupComponent,
     ManageTasksComponent,
-    LoginComponent,
     ManagePersonsComponent,
     PetalComponent,
     WelcomePopupComponent,
+    ChoosePersonComponent,
+    TaskListPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +73,7 @@ import { WelcomePopupComponent } from './components/welcome-popup/welcome-popup.
     MatTooltipModule,
     MatDialogModule,
     CommonModule,
+    MatSidenavModule
   ],
   providers: [CommunicationService, { provide: Window, useValue: window }],
   bootstrap: [AppComponent],

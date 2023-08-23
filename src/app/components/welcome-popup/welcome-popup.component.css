@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap");
+
+#welcome-popup {
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  top: 12px;
+}
+
+#welcome-popup-title {
+  font-family: 'Poppins', sans-serif;
+}
+
+#welcome-popup-text {
+  color: black;
+}
